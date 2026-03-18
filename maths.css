@@ -1,0 +1,47 @@
+* {
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box; /* Ajout important */
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #f8f8f8;
+    padding: 10px 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* CORRECTION : Spécifier le div dans le header */
+header > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#nournours {
+    width: 80px;
+    height: auto;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+nav li {
+    cursor: pointer;
+    padding: 8px 15px;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+nav li:hover {
+    color: #007bff;
+}
+

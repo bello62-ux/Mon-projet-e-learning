@@ -1,0 +1,209 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #dcd5d5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#bello {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 80%;              /* 🔹 Diminution de la largeur (avant 90%) */
+    max-width: 950px;        /* 🔹 Taille max réduite */
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* Sections gauche et droite */
+.form-section {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* 🔹 Trait vertical central */
+.vertical-divider {
+    width: 2px;
+    background-color: #ddd;
+    margin: 0 20px;
+}
+
+/* Titres */
+h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+h3 {
+    text-align: center;
+    margin: 15px 0;
+    color: #4a90e2;
+}
+
+/* Formulaire */
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+/* Cases à cocher */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 8px;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.2);
+}
+
+/* Niveaux scolaires */
+.level-group {
+    display: flex;
+    margin-top: 5px;
+    justify-content: space-between;
+}
+
+/* Séparateurs */
+.divider {
+    height: 1px;
+    background-color: #ddd;
+    margin: 20px 0;
+}
+
+/* Boutons */
+.btn {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+.btn2 {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background-color: #3a78c2;
+}
+
+/* Note */
+.note {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.message {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+}
+        
+.error {
+    background-color: #ffe6e6;
+    color: #d63031;
+    border: 1px solid #ff7675;
+}
+        
+.success {
+    background-color: #e6f7e6;
+    color: #27ae60;
+    border: 1px solid #2ecc71;
+}
+
+.success-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    text-align: center;
+    z-index: 1000;
+    border: 2px solid #2ecc71;
+}
+
+.success-icon {
+    margin-bottom: 15px;
+}
+        
+.success-message {
+    color: #2ecc71;
+    font-size: 18px;
+    font-weight: bold;
+}
+        
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+}
+        
+.message {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+}
+        
+.error {
+    background-color: #ffe6e6;
+    color: #d63031;
+    border: 1px solid #ff7675;
+}
+
