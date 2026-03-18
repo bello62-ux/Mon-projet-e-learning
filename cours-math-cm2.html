@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cours-francais.css">
+    <title>Mathématiques CM2 - Cours de mathématiques</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="logo.jpg" alt="Logo Nournours" id="nournours">
+            <nav>
+                <ul>
+                    <a href="acceuil.html"><li>Accueil</li></a>
+                    <li>A propos</li>
+                    <a href="profil.php"><li>Profil</li></a>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <div class="course-container">
+        <!-- Sidebar avec chapitres -->
+        <div class="sidebar">
+            <div class="course-title">
+                <h1>Mathématiques CM2<br></h1>
+                <div class="mobile-close-btn">×</div>
+            </div>
+            
+            <div class="chapters">
+                <div class="chapter">
+                    <div class="chapter-title">Chapitre 1 : La Numération</div>
+                    <ul class="lessons">
+                        <li class="lesson active" data-lesson="introduction">Les nombres jusqu'à 999 999</li>
+                    </ul>
+                </div>
+                
+                <div class="chapter">
+                    <div class="chapter-title">Chapitre 2 : Opérations</div>
+                    <ul class="lessons">
+                        <li class="lesson" data-lesson="operations">Calcul avec (+ - x ÷)</li>
+                    </ul>
+                </div>
+                
+                <div class="chapter">
+                    <div class="chapter-title">Chapitre 3 : Fractions et Nombres Décimaux</div>
+                    <ul class="lessons">
+                        <li class="lesson" data-lesson="fractions">Écriture, Calcul et Comparaison</li>
+                    </ul>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">Chapitre 4 : Géométrie</div>
+                    <ul class="lessons">
+                        <li class="lesson" data-lesson="geometrie">Figures Planes, Périmètre et Surface</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenu principal -->
+        <div class="main-content content-active">
+            
+            <!-- ========== CHAPITRE 1 : NUMÉRATION ========== -->
+            <div class="lesson-content active" id="introduction-content">
+                <div class="lesson-header">
+                    <div class="mobile-lesson-title">
+                        <h2>La Numération</h2>
+                        <button class="mobile-toggle-btn">☰ Menu</button>
+                    </div>
+                </div>
+
+                <div class="lesson-type">
+                    <button class="type-btn active" data-type="video">Vidéo du cours</button>
+                    <button class="type-btn" data-type="written">Cours écrit</button>
+                </div>
+
+                <!-- CONTENU VIDÉO -->
+                <div class="video-content">
+                    <div class="video-placeholder">
+                       <h1>PAS DE COURS VIDEO POUR LE CM2</h1>  
+                    </div>   
+                </div>
+
+                <!-- CONTENU ÉCRIT -->
+                <div class="written-content">
+                    <div class="content-section">
+                        <h3>Les nombres jusqu'à 999 999</h3>
+
+                        <div class="grammar-point">
+                            <h4>Les nombres jusqu'à 999 999 sont composés de 6 chiffres :</h4>
+                            
+                            <div class="example">
+                                <strong>Centaines de mille</strong> → 100 000<br>
+                                <strong>Dizaines de mille</strong> → 10 000<br>
+                                <strong>Unités de mille</strong> → 1 000<br>
+                                <strong>Centaines</strong> → 100<br>
+                                <strong>Dizaines</strong> → 10<br>
+                                <strong>Unités</strong> → 1<br>
+                            </div>
+                            <p><strong>Exemple :</strong> Le nombre 472 536 se lit : quatre-cent-soixante-douze-mille-cinq-cent-trente-six.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Décomposition des nombres</h3>
+                        <p>Un nombre peut être décomposé en utilisant les unités de numération.</p>
+                        <div class="example">
+                            <strong>247 358 = 200 000 + 40 000 + 7 000 + 300 + 50 + 8</strong><br>
+                            <strong>495 303 = 400 000 + 90 000 + 5 000 + 300 + 0 + 3</strong><br>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Comparaison et ordre</h3>
+                        <p>Pour comparer deux nombres, on regarde leur valeur de gauche à droite.</p>
+                        <div class="example">
+                            <strong>356 789 > 354 999</strong> (car 356 000 > 354 000)<br><br>
+                            <h4>Pour ranger des nombres :</h4>
+                            <strong>Croissant :</strong> du plus petit au plus grand.<br>
+                            <strong>Décroissant :</strong> du plus grand au plus petit.<br><br>
+                            <p><strong>Exemple :</strong> 123 456, 125 000, 130 000 (ordre croissant).</p>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Nombres pairs et impairs</h3>
+                        <p class="content-text">
+                            <strong>Pair :</strong> un nombre divisible par 2 (ex : 2, 4, 6, 8, ...)<br>
+                            <strong>Impair :</strong> un nombre non divisible par 2 (ex : 1, 3, 5, 7, ...)<br><br>
+                            <strong>456 est pair</strong> (456 ÷ 2 = 228)<br>
+                            <strong>457 est impair</strong> (457 ÷ 2 = 228,5)
+                        </p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Écriture en lettres et en chiffres</h3>
+                        <p>Les nombres peuvent s'écrire en chiffres (ex : 456) ou en lettres (ex : quatre-cent-cinquante-six).</p>
+                        <div class="example">
+                            <strong>789 123 → sept-cent-quatre-vingt-neuf-mille-cent-vingt-trois</strong>
+                        </div>
+                    </div>
+                        
+                    <!-- BOUTON MARQUER COMME TERMINÉ -->
+                    <div class="navigation">
+                        <button class="nav-btn prev" onclick="window.location.href='cours.html'">← Retour aux cours</button>
+                        <button class="nav-btn complete" onclick="markAsComplete('introduction')">Marquer comme terminé ✓</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== CHAPITRE 2 : OPÉRATIONS ========== -->
+            <div class="lesson-content" id="operations-content">
+                <div class="lesson-header">
+                    <div class="mobile-lesson-title">
+                        <h2>Calcul avec (+ - x ÷)</h2>
+                        <button class="mobile-toggle-btn">☰ Menu</button>
+                    </div>
+                </div>
+
+                <div class="lesson-type">
+                    <button class="type-btn active" data-type="video">Vidéo du cours</button>
+                    <button class="type-btn" data-type="written">Cours écrit</button>
+                </div>
+
+                <!-- CONTENU VIDÉO -->
+                <div class="video-content">
+                    <div class="video-placeholder">
+                       <h1>PAS DE COURS VIDEO POUR LE CM2</h1>
+                    </div>
+                </div>
+
+                <!-- CONTENU ÉCRIT -->
+                <div class="written-content">
+                    <div class="content-section">
+                        <h3>Addition (avec retenue)</h3>
+                        <p class="content-text">
+                           Pour additionner des grands nombres, on aligne les chiffres par colonne (unités, dizaines, centaines, etc.) et on ajoute en commençant par la droite.
+                        </p>
+                        <div class="example">
+                            <strong>456 789 + 32 456 = 489 245</strong><br>
+                            <p><strong>Méthode :</strong> Commence par les unités, puis les dizaines, etc.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Soustraction (avec retenue)</h3>
+                        <p class="content-text">
+                           Pour soustraire, on aligne les chiffres et on soustrait en commençant par la droite. Si un chiffre est plus petit, on emprunte une dizaine.
+                        </p>
+                        <div class="example">
+                            <strong>567 890 - 45 678 = 522 212</strong><br>
+                            <p><strong>Méthode :</strong> Si 0 - 8 est impossible, emprunte 1 dizaine.</p>
+                        </div>
+                    </div>
+                         
+                    <div class="content-section">
+                        <h3>Multiplication (par 1 ou 2 chiffres)</h3>
+                        <p class="content-text">
+                            Pour multiplier, on utilise la méthode de la multiplication en colonne.
+                        </p>
+                        <div class="example">
+                            <strong>456 × 7 = 3 192</strong><br>
+                            <strong>345 × 23 = 7 935</strong><br>
+                            <p><strong>Méthode :</strong> Multiplie d'abord par les unités, puis par les dizaines.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Division (division euclidienne simple)</h3>
+                        <p class="content-text">
+                           La division permet de partager un nombre en parts égales.
+                        </p>
+                        <div class="example">
+                            <strong>456 ÷ 3 = 152</strong> (car 3 × 152 = 456)<br>
+                            <strong>789 ÷ 4 = 197 reste 1</strong><br>
+                            <p><strong>Méthode :</strong> Divise, multiplie, soustrais, descends.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>💡 Astuces pour les opérations</h3>
+                        <p class="content-text">
+                            <strong>1. Vérifie tes calculs :</strong> Fais l'opération inverse pour vérifier.<br>
+                            <strong>2. Pose correctement :</strong> Aligne bien les chiffres par colonne.<br>
+                            <strong>3. Attention aux retenues :</strong> N'oublie pas de les noter.<br>
+                            <strong>4. Pratique régulièrement :</strong> Plus tu pratiques, plus tu deviens rapide.
+                        </p>
+                    </div>
+                    
+                    <!-- BOUTON MARQUER COMME TERMINÉ -->
+                    <div class="navigation">
+                        <button class="nav-btn prev" onclick="window.location.href='cours.html'">← Retour aux cours</button>
+                        <button class="nav-btn complete" onclick="markAsComplete('operations')">Marquer comme terminé ✓</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== CHAPITRE 3 : FRACTIONS ========== -->
+            <div class="lesson-content" id="fractions-content">
+                <div class="lesson-header">
+                    <div class="mobile-lesson-title">
+                        <h2>Fractions et Nombres Décimaux</h2>
+                        <button class="mobile-toggle-btn">☰ Menu</button>
+                    </div>
+                </div>
+
+                <div class="lesson-type">
+                    <button class="type-btn active" data-type="video">Vidéo du cours</button>
+                    <button class="type-btn" data-type="written">Cours écrit</button>
+                </div>
+
+                <!-- CONTENU VIDÉO -->
+                <div class="video-content">
+                    <div class="video-placeholder">
+                        <h1>PAS DE COURS VIDEO POUR LE CM2</h1>
+                    </div>
+                </div>
+
+                <!-- CONTENU ÉCRIT -->
+                <div class="written-content">
+                    <div class="content-section">
+                        <h3>Fractions simples</h3>
+                        <p class="content-text">
+                           Les fractions représentent une partie d'un tout.
+                        </p>
+                        <div class="example">
+                            <strong>1/2 → une moitié</strong><br>
+                            <strong>1/4 → un quart</strong><br>
+                            <strong>3/4 → trois quarts</strong><br>
+                            <strong>1/3 → un tiers</strong>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Écriture décimale</h3>
+                        <p class="content-text">
+                            Les fractions peuvent s'écrire sous forme décimale.
+                        </p>
+                        <div class="example">
+                            <strong>1/2 = 0,5</strong><br>
+                            <strong>3/4 = 0,75</strong><br>
+                            <strong>1/10 = 0,1 (un dixième)</strong><br>
+                            <strong>1/100 = 0,01 (un centième)</strong>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Comparaison de fractions</h3>
+                        <p class="content-text">
+                           Pour comparer des fractions, on peut les convertir en décimaux ou trouver un dénominateur commun.
+                        </p>
+                        <div class="example">
+                            <strong>1/2 > 1/3</strong> (car 0,5 > 0,333...)<br>
+                            <strong>2/4 = 1/2</strong> (car les deux valent 0,5)<br>
+                            <strong>3/5 > 1/2</strong> (car 0,6 > 0,5)
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Addition de fractions simples</h3>
+                        <p class="content-text">
+                            Pour additionner des fractions, il faut qu'elles aient le même dénominateur.
+                        </p>
+                        <div class="example">
+                            <strong>1/4 + 2/4 = 3/4</strong><br>
+                            <strong>1/3 + 1/3 = 2/3</strong><br>
+                            <strong>1/2 + 1/4 = 2/4 + 1/4 = 3/4</strong>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>💡 Conversion rapide</h3>
+                        <div class="table-container">
+                            <table class="conjugation-table">
+                                <tr>
+                                    <th>Fraction</th>
+                                    <th>Décimal</th>
+                                    <th>Pourcentage</th>
+                                </tr>
+                                <tr>
+                                    <td>1/2</td>
+                                    <td>0,5</td>
+                                    <td>50%</td>
+                                </tr>
+                                <tr>
+                                    <td>1/4</td>
+                                    <td>0,25</td>
+                                    <td>25%</td>
+                                </tr>
+                                <tr>
+                                    <td>3/4</td>
+                                    <td>0,75</td>
+                                    <td>75%</td>
+                                </tr>
+                                <tr>
+                                    <td>1/10</td>
+                                    <td>0,1</td>
+                                    <td>10%</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                       
+                    <!-- BOUTON MARQUER COMME TERMINÉ -->
+                    <div class="navigation">
+                        <button class="nav-btn prev" onclick="window.location.href='cours.html'">← Retour aux cours</button>
+                        <button class="nav-btn complete" onclick="markAsComplete('fractions')">Marquer comme terminé ✓</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== CHAPITRE 4 : GÉOMÉTRIE ========== -->
+            <div class="lesson-content" id="geometrie-content">
+                <div class="lesson-header">
+                    <div class="mobile-lesson-title">
+                        <h2>Figures Planes, Périmètre et Surface</h2>
+                        <button class="mobile-toggle-btn">☰ Menu</button>
+                    </div>
+                </div>
+
+                <div class="lesson-type">
+                    <button class="type-btn active" data-type="video">Vidéo du cours</button>
+                    <button class="type-btn" data-type="written">Cours écrit</button>
+                </div>
+
+                <!-- CONTENU VIDÉO -->
+                <div class="video-content">
+                    <div class="video-placeholder">
+                       <h1>PAS DE COURS VIDEO POUR LE CM2</h1>  
+                    </div>   
+                </div>
+
+                <!-- CONTENU ÉCRIT -->
+                <div class="written-content">
+                    <div class="content-section">
+                        <h3>Les Figures Planes</h3>
+                        <div class="grammar-point">
+                            <h4>Les principales figures géométriques :</h4>
+                            <div class="example">
+                                <strong>Carré</strong> → 4 côtés égaux, 4 angles droits<br>
+                                <strong>Rectangle</strong> → 4 angles droits, côtés opposés égaux<br>
+                                <strong>Triangle</strong> → 3 côtés, 3 angles<br>
+                                <strong>Cercle</strong> → forme ronde, tous les points à égale distance du centre<br>
+                                <strong>Losange</strong> → 4 côtés égaux, angles opposés égaux
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Le Périmètre</h3>
+                        <p>Le périmètre est la longueur du tour d'une figure.</p>
+                        <div class="example">
+                            <strong>Périmètre du carré = côté × 4</strong><br>
+                            <strong>Périmètre du rectangle = (longueur + largeur) × 2</strong><br>
+                            <strong>Périmètre du triangle = somme des 3 côtés</strong><br><br>
+                            <strong>Exemple :</strong> Un carré de 5 cm de côté → 5 × 4 = 20 cm
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>La Surface (Aire)</h3>
+                        <p>La surface est l'espace à l'intérieur d'une figure.</p>
+                        <div class="example">
+                            <strong>Aire du carré = côté × côté</strong><br>
+                            <strong>Aire du rectangle = longueur × largeur</strong><br>
+                            <strong>Aire du triangle = (base × hauteur) ÷ 2</strong><br><br>
+                            <strong>Exemple :</strong> Un rectangle de 6 cm sur 4 cm → 6 × 4 = 24 cm²
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Les Angles</h3>
+                        <p class="content-text">
+                            <strong>Angle droit</strong> → comme le coin d'une feuille (90°)<br>
+                            <strong>Angle aigu</strong> → plus petit qu'un angle droit (moins de 90°)<br>
+                            <strong>Angle obtus</strong> → plus grand qu'un angle droit (plus de 90°)<br>
+                            <strong>Angle plat</strong> → ligne droite (180°)
+                        </p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>La Symétrie</h3>
+                        <p>Une figure est symétrique quand on peut la plier en deux et que les deux parties se superposent parfaitement.</p>
+                        <div class="example">
+                            <strong>Exemples de figures symétriques :</strong><br>
+                            • Un papillon<br>
+                            • Un cœur<br>
+                            • Un carré<br>
+                            • Un triangle isocèle
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>💡 Formules à retenir</h3>
+                        <div class="table-container">
+                            <table class="conjugation-table">
+                                <tr>
+                                    <th>Figure</th>
+                                    <th>Périmètre</th>
+                                    <th>Surface</th>
+                                </tr>
+                                <tr>
+                                    <td>Carré</td>
+                                    <td>côté × 4</td>
+                                    <td>côté × côté</td>
+                                </tr>
+                                <tr>
+                                    <td>Rectangle</td>
+                                    <td>(L + l) × 2</td>
+                                    <td>L × l</td>
+                                </tr>
+                                <tr>
+                                    <td>Triangle</td>
+                                    <td>a + b + c</td>
+                                    <td>(b × h) ÷ 2</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- BOUTON MARQUER COMME TERMINÉ -->
+                    <div class="navigation">
+                        <button class="nav-btn prev" onclick="window.location.href='cours.html'">← Retour aux cours</button>
+                        <button class="nav-btn complete" onclick="markAsComplete('geometrie')">Marquer comme terminé ✓</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation entre les leçons
+        const lessons = document.querySelectorAll('.lesson');
+        const typeButtons = document.querySelectorAll('.type-btn');
+        const lessonContents = document.querySelectorAll('.lesson-content');
+        const mainContent = document.querySelector('.main-content');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileCloseBtn = document.querySelector('.mobile-close-btn');
+        const sidebar = document.querySelector('.sidebar');
+        const mobileToggleBtns = document.querySelectorAll('.mobile-toggle-btn');
+
+        // Gestion des leçons actives
+        lessons.forEach(lesson => {
+            lesson.addEventListener('click', function() {
+                // Retirer active de toutes les leçons
+                lessons.forEach(l => l.classList.remove('active'));
+                // Activer la leçon cliquée
+                this.classList.add('active');
+                
+                // Afficher le contenu correspondant
+                const lessonId = this.getAttribute('data-lesson');
+                showLessonContent(lessonId);
+                
+                // Sur mobile, cacher la sidebar après sélection
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        });
+
+        // Gestion des types de contenu (vidéo/écrit)
+        typeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                typeButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const contentType = this.getAttribute('data-type');
+                toggleContentType(contentType);
+            });
+        });
+
+        function showLessonContent(lessonId) {
+            // Cacher tous les contenus de leçon
+            lessonContents.forEach(content => content.classList.remove('active'));
+            // Afficher le contenu de la leçon sélectionnée
+            const targetContent = document.getElementById(lessonId + '-content');
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+            
+            // Remettre en mode vidéo par défaut
+            toggleContentType('video');
+            typeButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-type') === 'video') {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        function toggleContentType(type) {
+            if (type === 'video') {
+                mainContent.classList.remove('written-active');
+                mainContent.classList.add('content-active');
+            } else {
+                mainContent.classList.remove('content-active');
+                mainContent.classList.add('written-active');
+            }
+        }
+
+        // Gestion du menu mobile
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                sidebar.classList.add('active');
+            });
+        }
+
+        if (mobileCloseBtn) {
+            mobileCloseBtn.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+            });
+        }
+
+        mobileToggleBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                sidebar.classList.add('active');
+            });
+        });
+
+        // Fermer la sidebar en cliquant à l'extérieur sur mobile
+        document.addEventListener('click', function(event) {
+            if (window.innerWidth <= 768 && 
+                sidebar.classList.contains('active') &&
+                !sidebar.contains(event.target) &&
+                (!mobileMenuBtn || !mobileMenuBtn.contains(event.target)) &&
+                !event.target.classList.contains('mobile-toggle-btn')) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Au chargement, afficher la leçon active
+        document.addEventListener('DOMContentLoaded', function() {
+            const activeLesson = document.querySelector('.lesson.active');
+            if (activeLesson) {
+                const lessonId = activeLesson.getAttribute('data-lesson');
+                showLessonContent(lessonId);
+            }
+            
+            // Ajuster l'affichage sur mobile
+            if (window.innerWidth <= 768) {
+                toggleContentType('written');
+                typeButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-type') === 'written') {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+        });
+
+        // Fonction pour marquer un cours comme terminé - MATHÉMATIQUES
+        function markAsComplete(chapitreId) {
+            const coursMathIds = {
+                'introduction': 4,    // LA NUMERATION
+                'operations': 5,      // OPERATION
+                'fractions': 6,       // FRACTIONS ET NOMBRE DECIMAUX
+                'geometrie': 7        // GEOMETRIE
+            };
+            
+            const coursId = coursMathIds[chapitreId];
+            
+            if (!coursId) {
+                alert('Erreur : ID du cours non trouvé pour: ' + chapitreId);
+                return;
+            }
+            
+            fetch('mark_complete.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `cours_id=${coursId}&chapitre_id=${chapitreId}`
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data === 'success') {
+                    const lessonElement = document.querySelector(`.lesson[data-lesson="${chapitreId}"]`);
+                    if (lessonElement) {
+                        lessonElement.style.backgroundColor = '#2ecc71';
+                        lessonElement.style.color = 'white';
+                        lessonElement.innerHTML += ' ✓';
+                    }
+                    alert('Cours marqué comme terminé !');
+                } else {
+                    alert('Erreur serveur: ' + data);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Erreur de connexion: ' + error);
+            });
+        }
+    </script>
+</body>
+</html>
