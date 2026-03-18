@@ -36,40 +36,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $result->fetch_assoc();
 
     if ($user && password_verify($password, $user['password'])) {
-        // Connexion réussie - créer la session utilisateur
+        $connexion_success = true;
+        
+        // Créer la session
         $_SESSION['user_id'] = $user['user_id'];
-        $_SESSION['first_name'] = $user['first_name'];
-        $_SESSION['last_name'] = $user['last_name'];
-        $_SESSION['email'] = $user['email'];
-        $_SESSION['is_admin'] = $user['is_admin'];
-        $_SESSION['connexion_success'] = true;
+        $_SESSION['user_first_name'] = $user['first_name'];
+        $_SESSION['user_last_name'] = $user['last_name'];
+        $_SESSION['user_email'] = $user['email'];
+        $_SESSION['user_is_admin'] = $user['is_admin'];
         
         // Gérer "Se souvenir de moi"
         if ($remember_me) {
             $token = bin2hex(random_bytes(32));
             $expiry = time() + (30 * 24 * 60 * 60); // 30 jours
             
+            // Sauvegarder le token dans la base de données
+            $token_stmt = $conn->prepare("UPDATE Users SET remember_token = ? WHERE user_id = ?");
+            $token_stmt->bind_param("si", $token, $user['user_id']);
+            $token_stmt->execute();
+            $token_stmt->close();
             
+            // Créer le cookie
             setcookie('remember_token', $token, $expiry, '/', '', false, true);
         }
         
-        $stmt->close();
-        $conn->close();
-        
-        // Rediriger vers la page de connexion pour afficher le message de succès
-        header("Location: ../authentification/login.php");
-        exit();
-        
     } else {
         $connexion_error = "Email ou mot de passe incorrect!";
-        $_SESSION['connexion_error'] = $connexion_error;
         
-        $stmt->close();
-        $conn->close();
-        
-        // Rediriger vers la page de connexion pour afficher le message d'erreur
-        header("Location: ../authentification/login.php");
-        exit();
+        // Vérifier si le compte existe mais est inactif
+        if (!$user && $stmt->affected_rows > 0) {
+            $connexion_error = "Votre compte est désactivé. Veuillez contacter l'administrateur.";
+        }
     }
+
+    $stmt->close();
+    $conn->close();
 }
 ?>
