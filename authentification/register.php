@@ -127,15 +127,17 @@ if ($class_result) {
 
                 <div class="form-group">
                     <label>Classe</label>
-                    <select name="classroom_id">
-                        <option value="">Sélectionnez votre classe</option>
-                        <?php foreach($classes as $class): ?>
-                            <option value="<?= $class['classroom_id'] ?>" 
-                                <?php echo (isset($old_input['classroom_id']) && $old_input['classroom_id'] == $class['classroom_id']) ? 'selected' : ''; ?>>
-                                <?= htmlspecialchars($class['name']) ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
+                    <div class="select-wrapper">
+    <select name="classroom_id">
+        <option value="">Sélectionnez votre classe</option>
+        <?php foreach($classes as $class): ?>
+            <option value="<?= $class['classroom_id'] ?>" 
+                <?php echo (isset($old_input['classroom_id']) && $old_input['classroom_id'] == $class['classroom_id']) ? 'selected' : ''; ?>>
+                <?= htmlspecialchars($class['name']) ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+</div>
                 </div>
 
                 <div class="terms-group">

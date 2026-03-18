@@ -358,3 +358,33 @@ a:hover {
 @keyframes spin {
     to { transform: translate(-50%, -50%) rotate(360deg); }
 }
+
+/* Style pour le select des classes - RECTANGLE COMME L'EMAIL */
+select[name="classroom_id"] {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;  
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    appearance: none; /* Pour enlever la flèche par défaut (optionnel) */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Style au focus (comme l'email) */
+select[name="classroom_id"]:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+   
+}
+
+/* Style des options (optionnel) */
+select[name="classroom_id"] option {
+    padding: 10px;
+    font-size: 14px;
+    
+}
