@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../asset/css/login.css">
-    <title>Connexion</title>
+    <title>Connexion - Plateforme Éducative</title>
 </head>
 <body>
-    <?php  
+    <?php
     // Récupérer les messages de la session
     session_start();
     $connexion_success = isset($_SESSION['connexion_success']) ? $_SESSION['connexion_success'] : false;
     $connexion_error = isset($_SESSION['connexion_error']) ? $_SESSION['connexion_error'] : "";
-    $user_first_name = isset($_SESSION['first_name']) ? $_SESSION['first_name'] : "";
+    $user_first_name = isset($_SESSION['user_first_name']) ? $_SESSION['user_first_name'] : "";
     
     // Nettoyer les messages de la session après les avoir récupérés
     unset($_SESSION['connexion_success']);
@@ -32,7 +32,7 @@
     </div>
     <script>
         setTimeout(function() {
-            window.location.href = "./index.php";
+            window.location.href = "index.php";
         }, 2000);
     </script>
     <?php endif; ?>
