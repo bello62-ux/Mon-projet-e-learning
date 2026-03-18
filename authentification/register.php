@@ -6,11 +6,15 @@ include('../config/db.php');
 $inscription_error = $_SESSION['inscription_error'] ?? "";
 $inscription_success = $_SESSION['inscription_success'] ?? false;
 
-// Effacer les messages après affichage
+// Récupérer les anciennes données POST
+$old_input = $_SESSION['post_data'] ?? [];
+
+// Effacer les données après les avoir récupérées
 unset($_SESSION['inscription_error']);
 unset($_SESSION['inscription_success']);
+unset($_SESSION['post_data']);
 
-// Récupérer les classes pour le select
+// Récupérer les classes
 $classes = [];
 $class_result = $conn->query("SELECT classroom_id, name FROM Classroom ORDER BY name");
 if ($class_result) {
@@ -63,20 +67,20 @@ if ($class_result) {
                     <div class="form-group">
                         <label>Prénom <span class="required">*</span></label>
                         <input type="text" name="first_name" placeholder="Votre prénom" required 
-                               value="<?php echo isset($_POST['first_name']) ? htmlspecialchars($_POST['first_name']) : ''; ?>">
+                               value="<?php echo isset($old_input['first_name']) ? htmlspecialchars($old_input['first_name']) : ''; ?>">
                     </div>
 
                     <div class="form-group">
                         <label>Nom <span class="required">*</span></label>
                         <input type="text" name="last_name" placeholder="Votre nom" required
-                               value="<?php echo isset($_POST['last_name']) ? htmlspecialchars($_POST['last_name']) : ''; ?>">
+                               value="<?php echo isset($old_input['last_name']) ? htmlspecialchars($old_input['last_name']) : ''; ?>">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Email <span class="required">*</span></label>
                     <input type="email" name="email" placeholder="exemple@email.com" required
-                           value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+                           value="<?php echo isset($old_input['email']) ? htmlspecialchars($old_input['email']) : ''; ?>">
                 </div>
 
                 <div class="form-row">
@@ -85,7 +89,10 @@ if ($class_result) {
                         <div class="password-input-wrapper">
                             <input type="password" name="password" id="password" placeholder="Min. 8 caractères" required>
                             <button type="button" class="toggle-password" onclick="togglePassword('password')">
-                                👁️
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
                             </button>
                         </div>
                     </div>
@@ -95,7 +102,10 @@ if ($class_result) {
                         <div class="password-input-wrapper">
                             <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirmez" required>
                             <button type="button" class="toggle-password" onclick="togglePassword('confirm_password')">
-                                👁️
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
                             </button>
                         </div>
                     </div>
@@ -105,23 +115,23 @@ if ($class_result) {
                     <div class="form-group">
                         <label>Date de naissance</label>
                         <input type="date" name="birthday"
-                               value="<?php echo isset($_POST['birthday']) ? $_POST['birthday'] : ''; ?>">
+                               value="<?php echo isset($old_input['birthday']) ? $old_input['birthday'] : ''; ?>">
                     </div>
 
                     <div class="form-group">
                         <label>Téléphone</label>
                         <input type="tel" name="telephone" placeholder="+229 XX XX XX XX"
-                               value="<?php echo isset($_POST['telephone']) ? htmlspecialchars($_POST['telephone']) : ''; ?>">
+                               value="<?php echo isset($old_input['telephone']) ? htmlspecialchars($old_input['telephone']) : ''; ?>">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Classe</label>
                     <select name="classroom_id">
-                        <option value=""> Sélectionnez votre classe </option>
+                        <option value="">Sélectionnez votre classe</option>
                         <?php foreach($classes as $class): ?>
                             <option value="<?= $class['classroom_id'] ?>" 
-                                <?php echo (isset($_POST['classroom_id']) && $_POST['classroom_id'] == $class['classroom_id']) ? 'selected' : ''; ?>>
+                                <?php echo (isset($old_input['classroom_id']) && $old_input['classroom_id'] == $class['classroom_id']) ? 'selected' : ''; ?>>
                                 <?= htmlspecialchars($class['name']) ?>
                             </option>
                         <?php endforeach; ?>
@@ -130,12 +140,14 @@ if ($class_result) {
 
                 <div class="terms-group">
                     <label class="checkbox-label">
-                        <input type="checkbox" name="terms" required>
+                        <input type="checkbox" name="terms" required
+                               <?php echo isset($old_input['terms']) ? 'checked' : ''; ?>>
                         J'accepte les Conditions Générales d'utilisation <span class="required">*</span>
                     </label>
                     
                     <label class="checkbox-label">
-                        <input type="checkbox" name="privacy" required>
+                        <input type="checkbox" name="privacy" required
+                               <?php echo isset($old_input['privacy']) ? 'checked' : ''; ?>>
                         J'accepte la politique de confidentialité <span class="required">*</span>
                     </label>
                 </div>
