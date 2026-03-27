@@ -7,6 +7,7 @@
 
 body {
     font-family: Arial, sans-serif;
+    background: #f5f7fa;
 }
 
 /* HEADER - RESPONSIVE COMPLET */
@@ -107,7 +108,7 @@ nav a {
     
     nav a {
         padding: 6px 10px;
-        font-size: 16px;
+        font-size: 14px;
     }
     
     #nournours {
@@ -163,18 +164,8 @@ nav a {
 }
 
 /* =========================================== */
-/* GARDE TES AUTRES STYLES EXISTANTS */
+/* STYLES DES FILTRES ET GRILLE DE COURS */
 /* =========================================== */
-
-section {
-    width: 20%;
-    float: left;
-}
-
-aside {
-    width: 80%;
-    float: right;
-}
 
 .filters-container {
     display: flex;
@@ -201,11 +192,28 @@ aside {
     color: white;
     border-color: #3498db;
 }
+
+.filter-btn.active h2 {
+    color: white;
+}
         
 .filter-btn:hover {
     background-color: #3498db;
     color: white;
     border-color: #3498db;
+}
+
+.filter-btn:hover h2 {
+    color: white;
+}
+
+.filter-btn h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    transition: color 0.3s;
 }
         
 .cours-grid {
@@ -214,6 +222,8 @@ aside {
     justify-content: center;
     gap: 25px;
     padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
         
 .cours-card {
@@ -226,11 +236,19 @@ aside {
     transition: all 0.3s ease;
 }
 
+.cours-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
 .cours-card.hidden {
     display: none;
 }
 
-/* AJOUTE CES STYLES POUR AMÉLIORER LA RESPONSIVITÉ DES FILTRES ET CARTES */
+/* =========================================== */
+/* RESPONSIVITÉ DES FILTRES ET CARTES */
+/* =========================================== */
+
 @media (max-width: 1024px) {
     .cours-grid {
         gap: 20px;
@@ -284,6 +302,20 @@ aside {
         text-align: center;
         padding: 0 10px;
     }
+}
+
+/* =========================================== */
+/* AUTRES STYLES EXISTANTS */
+/* =========================================== */
+
+section {
+    width: 20%;
+    float: left;
+}
+
+aside {
+    width: 80%;
+    float: right;
 }
 
 /* CORRECTION DES FLOTANTS POUR MOBILE */

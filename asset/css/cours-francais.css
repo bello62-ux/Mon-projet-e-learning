@@ -1,90 +1,4 @@
-* {
-    margin: 0; 
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body {
-    height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
-    background: #f5f7fa;
-    display: flex;
-    flex-direction: column;
-}
-
-header {
-    background: white;
-    padding: 12px 20px;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-    width: 100%;
-    flex-shrink: 0;
-    position: relative;
-    z-index: 1000;
-}
-
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-}
-
-
-
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-    align-items: center;
-}
-
-nav a {
-    text-decoration: none;
-    color: white;
-}
-
-nav li {
-    cursor: pointer;
-    padding: 10px 20px;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    font-size: 16px;
-    border-radius: 8px;
-    color: black;
-}
-
-nav li:hover {
-    background: rgba(255,255,255,0.1);
-    transform: translateY(-2px);
-}
-
-.mobile-menu-btn {
-    display: none;
-    flex-direction: column;
-    gap: 4px;
-    cursor: pointer;
-    padding: 10px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 8px;
-}
-
-.mobile-menu-btn span {
-    width: 25px;
-    height: 3px;
-    background: white;
-    border-radius: 2px;
-    transition: 0.3s;
-}
-
-.mobile-menu-btn:hover span {
-    background: #ecf0f1;
-}
-
+/* ========== CONTENEUR PRINCIPAL DES COURS ========== */
 .course-container {
     display: flex;
     width: 100%;
@@ -93,7 +7,7 @@ nav li:hover {
     position: relative;
 }
 
-/* Sidebar */
+/* ========== SIDEBAR ========== */
 .sidebar {
     width: 320px;
     background: linear-gradient(180deg, #2c3e50 0%, #1a252f 100%);
@@ -103,6 +17,7 @@ nav li:hover {
     flex-shrink: 0;
     box-shadow: 3px 0 20px rgba(0,0,0,0.1);
     z-index: 100;
+    transition: left 0.3s ease;
 }
 
 .course-title {
@@ -212,7 +127,7 @@ nav li:hover {
     opacity: 1;
 }
 
-/* Main Content */
+/* ========== MAIN CONTENT ========== */
 .main-content {
     flex: 1;
     padding: 40px;
@@ -293,6 +208,7 @@ nav li:hover {
     box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
 }
 
+/* ========== CONTENU DES COURS ========== */
 .content-section {
     margin-bottom: 50px;
     background: white;
@@ -464,7 +380,7 @@ nav li:hover {
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
-/* Classes pour afficher/cacher le contenu */
+/* ========== CLASSES POUR AFFICHER/CACHER LE CONTENU ========== */
 .video-content {
     display: block;
 }
@@ -498,6 +414,7 @@ nav li:hover {
     display: block;
 }
 
+/* ========== LISTE DES VERBES ========== */
 .verb-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -523,64 +440,37 @@ nav li:hover {
     font-weight: 600;
 }
 
-/* Responsive Design */
+/* ========== RESPONSIVE (mobile et tablette) ========== */
 @media (max-width: 1024px) {
     .sidebar {
         width: 280px;
     }
-    
     .main-content {
         padding: 30px;
     }
-    
     .content-section {
         padding: 25px;
     }
-    
     .verb-list {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
 }
 
 @media (max-width: 768px) {
-    /* Header mobile - LE MENU EST MAINTENANT VISIBLE */
-    nav ul {
-        display: flex !important; /* Force l'affichage */
-        gap: 15px;
-    }
-    
-    nav li {
-        padding: 8px 12px;
-        font-size: 14px;
-    }
-    
-    .mobile-menu-btn {
-        display: flex;
-    }
-    
+    /* Boutons mobiles pour sidebar et toggle */
     .mobile-close-btn {
         display: flex;
     }
-    
     .mobile-toggle-btn {
         display: block;
     }
-    
-    /* Ajustement du header pour mobile */
-    .header-container {
-        gap: 15px;
-    }
-    
-    #nournours {
-        width: 50px;
-        height: 50px;
-    }
-    
-    /* Layout mobile */
+
+    /* Passage en colonne */
     .course-container {
         flex-direction: column;
     }
-    
+
+    /* Sidebar en overlay */
     .sidebar {
         position: fixed;
         left: -100%;
@@ -592,103 +482,94 @@ nav li:hover {
         z-index: 1000;
         box-shadow: 5px 0 25px rgba(0,0,0,0.3);
     }
-    
     .sidebar.active {
         left: 0;
     }
-    
+
     .main-content {
         width: 100%;
         padding: 20px;
         min-height: calc(100vh - 94px);
     }
-    
-    /* Header mobile */
+
     .lesson-header h2 {
         font-size: 24px;
         margin-bottom: 15px;
     }
-    
+
     .mobile-lesson-title {
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
     }
-    
+
     .mobile-toggle-btn {
         align-self: flex-start;
     }
-    
-    /* Contenu mobile */
+
     .lesson-type {
         flex-direction: column;
         width: 100%;
         max-width: 100%;
         gap: 10px;
     }
-    
+
     .type-btn {
         width: 100%;
         min-width: auto;
         padding: 15px;
     }
-    
-    /* Correction : FORCER l'affichage du contenu écrit sur mobile */
+
+    /* Gestion vidéo/écrit */
     .video-content,
     .written-content {
         display: block !important;
     }
-    
     .content-active .written-content,
     .written-active .video-content {
         display: none !important;
     }
-    
     .content-active .video-content,
     .written-active .written-content {
         display: block !important;
     }
-    
+
     .video-placeholder {
         height: 250px;
         font-size: 18px;
         padding: 20px;
     }
-    
+
     .content-section {
         padding: 20px;
         margin-bottom: 30px;
     }
-    
     .content-section h3 {
         font-size: 22px;
         padding-left: 15px;
     }
-    
+
     .gender-example {
         flex-direction: column;
         gap: 20px;
     }
-    
     .gender-card {
         width: 100%;
     }
-    
+
     .verb-list {
         grid-template-columns: 1fr;
         gap: 15px;
     }
-    
+
     .table-container {
         margin: 15px 0;
     }
-    
     .conjugation-table,
     .adjective-table,
     .verb-table {
         min-width: 100%;
     }
-    
     .conjugation-table th,
     .adjective-table th,
     .verb-table th,
@@ -698,28 +579,25 @@ nav li:hover {
         padding: 12px 10px;
         font-size: 14px;
     }
-    
+
     .navigation {
         flex-direction: column;
         gap: 15px;
     }
-    
     .nav-btn {
         width: 100%;
         text-align: center;
         min-width: auto;
         padding: 15px;
     }
-    
+
     .grammar-point {
         padding: 20px;
     }
-    
     .example {
         padding: 20px;
         font-size: 15px;
     }
-    
     .content-text {
         font-size: 16px;
         line-height: 1.7;
@@ -727,63 +605,28 @@ nav li:hover {
 }
 
 @media (max-width: 480px) {
-    /* Header sur très petit écran */
-    nav ul {
-        gap: 10px;
-    }
-    
-    nav li {
-        padding: 6px 10px;
-        font-size: 13px;
-    }
-    
-    #nournours {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .mobile-menu-btn {
-        padding: 8px;
-    }
-    
-    .mobile-menu-btn span {
-        width: 20px;
-        height: 2px;
-    }
-    
-    /* Contenu */
     .main-content {
         padding: 15px;
     }
-    
     .lesson-header h2 {
         font-size: 22px;
     }
-    
     .content-section {
         padding: 15px;
     }
-    
     .content-section h3 {
         font-size: 20px;
     }
-    
     .video-placeholder {
         height: 200px;
         font-size: 16px;
     }
-    
     .type-btn {
         padding: 12px;
         font-size: 15px;
     }
-    
     .nav-btn {
         padding: 14px;
         font-size: 15px;
-    }
-    
-    header {
-        padding: 10px 15px;
     }
 }

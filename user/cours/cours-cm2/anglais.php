@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../asset/css/cours-francais.css">
+    <title>Anglais  - Vocabulaire de base</title>
+</head>
+<body>
+    <div class="course-container">
+        <!-- Sidebar avec chapitres -->
+        <div class="sidebar">
+            <div class="course-title">
+                <h1>Anglais<br></h1>
+                <div class="mobile-close-btn">×</div>
+            </div>
+            
+            <div class="chapters">
+                <div class="chapter">
+                    <div class="chapter-title">Chapitre 1 : Les Bases</div>
+                    <ul class="lessons">
+                        <li class="lesson active" data-lesson="introduction">Vocabulaire de base</li>
+                    </ul>
+                </div>
+                
+                <div class="chapter">
+                    <div class="chapter-title">Chapitre 2 : Conjugaison</div>
+                    <ul class="lessons">
+                        <li class="lesson" data-lesson="futur">Simple present</li>
+                    </ul>
+                </div>
+                
+                <div class="chapter">
+                    <div class="chapter-title">Chapitre 3 : Approfondissement</div>
+                    <ul class="lessons">
+                        <li class="lesson" data-lesson="phrase-complexe">Structures de Communication</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenu principal -->
+        <div class="main-content content-active">
+            
+            <!-- ========== VOCABULAIRE DE BASE ========== -->
+            <div class="lesson-content active" id="introduction-content">
+                <div class="lesson-header">
+                    <div class="mobile-lesson-title">
+                        <h2>Vocabulaire de base</h2>
+                        <button class="mobile-toggle-btn">☰ Menu</button>
+                    </div>
+                </div>
+
+                <div class="lesson-type">
+                    <button class="type-btn active" data-type="video">Vidéo du cours</button>
+                    <button class="type-btn" data-type="written">Cours écrit</button>
+                </div>
+
+                <!-- CONTENU VIDÉO -->
+                <div class="video-content">
+                    <div class="video-placeholder">
+                       <h1>PAS DE COURS VIDEO POUR LE CM2</h1>  
+                    </div>   
+                </div>
+
+                <!-- CONTENU ÉCRIT -->
+                <div class="written-content">
+                    <div class="content-section">
+                        <h3>Les Salutations (Greetings)</h3>
+
+                        <div class="grammar-point">
+                            <h4>Dire bonjour :</h4>
+                            
+                            <div class="example">
+                                <strong>• Hello!</strong> → Salut !<br>
+                                <strong>• Good morning!</strong> → Bonjour ! (le matin)<br>
+                                <strong>• Good afternoon</strong> → Bonsoir ! (après-midi)<br>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Dire au revoir :</h3>
+                        <div class="example">
+                            <strong>• Goodbye! / Bye!</strong> → Au revoir !<br>
+                            <strong>• See you later! </strong> → À plus tard<br>
+                            <strong>• See you soon!</strong> → À bientôt !<br>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Les Présentations (Introductions)</h3>
+                        <div class="example">
+                            <strong>• What's your name?</strong> → Comment t'appelles-tu ?<br>
+                            <h4>Pour répondre :</h4>
+                            <strong>• My name is...</strong> → Je m'appelle...<br>
+                            <strong>• I am...</strong> → Je suis...<br>
+                            <p><strong>Exemple :</strong> "What's your name?" "My name is Sarah." / "I'm Sarah."</p>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Les Couleurs (Colors)</h3>
+                        <div class="table-container">
+                            <table class="conjugation-table">
+                                <tr>
+                                    <th>Anglais</th>
+                                    <th>Français</th>
+                                </tr>
+                                <tr>
+                                    <td>Red</td>
+                                    <td><strong>Rouge</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Yellow</td>
+                                    <td><strong>Jaune</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Green</td>
+                                    <td><strong>Vert</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Blue</td>
+                                    <td><strong>Bleu</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>White</td>
+                                    <td><strong>Blanc</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Black</td>
+                                    <td><strong>Noir</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Purple</td>
+                                    <td><strong>Violet</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>💡 Demander la couleur</h3>
+                        <p class="content-text">
+                            <strong>What color is...?</strong> → De quelle couleur est... ?<br>
+                            <strong>Exemple :</strong> "What color is your bag?" → "It's blue." (C'est bleu.)<br>
+                        </p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>La Famille (Family)</h3>
+                        <div class="table-container">
+                            <table class="conjugation-table">
+                                <tr>
+                                    <th>Anglais</th>
+                                    <th>Français</th>
+                                </tr>
+                                <tr>
+                                    <td>Mother</td>
+                                    <td><strong>Maman</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Father</td>
+                                    <td><strong>Papa</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Sister</td>
+                                    <td><strong>Sœur</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Brother</td>
+                                    <td><strong>Frère</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Aunt</td>
+                                    <td><strong>Tante</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Uncle</td>
+                                    <td><strong>Oncle</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Grandfather</td>
+                                    <td><strong>Grand-père</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Grandmother</td>
+                                    <td><strong>Grand-mère</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Objets de la Salle de Classe (School Objects)</h3>
+                        <div class="table-container">
+                            <table class="conjugation-table">
+                                <tr>
+                                    <th>Anglais</th>
+                                    <th>Français</th>
+                                </tr>
+                                <tr>
+                                    <td>Pen</td>
+                                    <td><strong>Stylo</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Pencil</td>
+                                    <td><strong>Crayon</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Book</td>
+                                    <td><strong>Livre</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Table</td>
+                                    <td><strong>Table</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Chair</td>
+                                    <td><strong>Chaise</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Eraser</td>
+                                    <td><strong>Gomme</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Ruler</td>
+                                    <td><strong>Règle</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- BOUTON MARQUER COMME TERMINÉ -->
+                    <div class="navigation">
+                        <button class="nav-btn prev" onclick="window.location.href='../../cours.php'">← Retour aux cours</button>
+                        <button class="nav-btn complete" onclick="markAsComplete(1, 'introduction')">Marquer comme terminé ✓</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== SIMPLE PRESENT ========== -->
+            <div class="lesson-content" id="futur-content">
+                <div class="lesson-header">
+                    <div class="mobile-lesson-title">
+                        <h2>Simple Present</h2>
+                        <button class="mobile-toggle-btn">☰ Menu</button>
+                    </div>
+                </div>
+
+                <div class="lesson-type">
+                    <button class="type-btn active" data-type="video">Vidéo du cours</button>
+                    <button class="type-btn" data-type="written">Cours écrit</button>
+                </div>
+
+                <!-- CONTENU VIDÉO -->
+                <div class="video-content">
+                    <div class="video-placeholder">
+                       <h1>PAS DE COURS VIDEO POUR LE CM2</h1>
+                    </div>
+                </div>
+
+                <!-- CONTENU ÉCRIT -->
+                <div class="written-content">
+                    <div class="content-section">
+                        <h3>À quoi sert le SIMPLE PRESENT ?</h3>
+                        <p class="content-text">
+                            Le présent simple (Simple Present) est utilisé pour parler d'une habitude (ce que tu fais souvent), d'une vérité générale (quelque chose qui est toujours vrai).
+                        </p>
+
+                        <div class="example">
+                            <p><strong>Forme affirmative</strong></p>
+                            <p><strong>Sujet + verbe (sans "to")</strong></p>
+                            <p><strong>Pour he/she/it, on ajoute -s ou -es à la fin du verbe.</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Conjuguer le verbe "to eat" au simple present</h3>
+                        <div class="table-container">
+                            <table class="conjugation-table">
+                                <tr>
+                                    <th>Anglais</th>
+                                    <th>Français</th>
+                                </tr>
+                                <tr>
+                                    <td>I eat</td>
+                                    <td><strong>Je mange</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>You eat</td>
+                                    <td><strong>Tu manges</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>He/She/It eats</td>
+                                    <td><strong>Il/Elle mange</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>We eat</td>
+                                    <td><strong>Nous mangeons</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>You eat</td>
+                                    <td><strong>Vous mangez</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>They eat</td>
+                                    <td><strong>Ils/Elles mangent</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Exemples avec d'autres verbes</h3>
+                        <div class="table-container">
+                            <table class="conjugation-table">
+                                <tr>
+                                    <th>Anglais</th>
+                                    <th>Français</th>
+                                </tr>
+                                <tr>
+                                    <td>She watches</td>
+                                    <td><strong>Elle regarde</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>He/She/It goes</td>
+                                    <td><strong>Il/Elle va</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>She studies</td>
+                                    <td><strong>Elle étudie</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Cas particuliers</h3>
+                        <div class="grammar-point">
+                            <h4>Verbes se terminant par -s, -sh, -ch, -x, -o → on ajoute -es</h4>
+                            <div class="example">
+                                <strong>go → goes</strong> ("He goes to school.")<br>
+                                <strong>wash → washes</strong> ("She washes her hands.")<br>
+                                <strong>watch → watches</strong> ("He watches TV.")<br>
+                            </div>
+                        </div>
+
+                        <div class="grammar-point">
+                            <h4>Verbes se terminant par "y" → on remplace "y" par "-ies"</h4>
+                            <div class="example">
+                                <strong>study → studies</strong> ("He studies English.")<br>
+                                <strong>fly → flies</strong> ("The bird flies.")<br>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>💡 Astuces pour retenir</h3>
+                        <p class="content-text">
+                            <strong>1. La 3ème personne est spéciale :</strong> Pour "he", "she", "it", on ajoute -s<br>
+                            <strong>2. Verbes en -y :</strong> Attention au changement de "y" en "ies"<br>
+                            <strong>3. Les terminaisons spéciales :</strong> -s, -sh, -ch, -x, -o prennent -es
+                        </p>
+                    </div>
+
+                    <!-- BOUTON MARQUER COMME TERMINÉ -->
+                    <div class="navigation">
+                        <button class="nav-btn prev" onclick="window.location.href='../../cours.php'">← Retour aux cours</button>
+                        <button class="nav-btn complete" onclick="markAsComplete(2, 'futur')">Marquer comme terminé ✓</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== STRUCTURES DE COMMUNICATION ========== -->
+            <div class="lesson-content" id="phrase-complexe-content">
+                <div class="lesson-header">
+                    <div class="mobile-lesson-title">
+                        <h2>Structures de Communication</h2>
+                        <button class="mobile-toggle-btn">☰ Menu</button>
+                    </div>
+                </div>
+
+                <div class="lesson-type">
+                    <button class="type-btn active" data-type="video">Vidéo du cours</button>
+                    <button class="type-btn" data-type="written">Cours écrit</button>
+                </div>
+
+                <!-- CONTENU VIDÉO -->
+                <div class="video-content">
+                    <div class="video-placeholder">
+                        <h1>PAS DE COURS VIDEO POUR LE CM2</h1>
+                    </div>
+                </div>
+
+                <!-- CONTENU ÉCRIT -->
+                <div class="written-content">
+                    <div class="content-section">
+                        <h3>Poser des questions simples</h3>
+                        <p class="content-text">
+                           Pour poser des questions en anglais, on utilise souvent des mots interrogatifs. Voici les plus courants :
+                        </p>
+
+                        <div class="example">
+                            <strong>What (Quoi / Quelle) :</strong><br>
+                            "What is this?" → Qu'est-ce que c'est ?<br>
+                            "What is your name?" → Comment t'appelles-tu ?
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <div class="example">
+                            <strong>Where? → Où ?</strong><br>
+                            "Where is the book?" → Où est le livre ?<br>
+                            "Where do you live?" → Où habites-tu ?
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <div class="example">
+                            <strong>How many? → Combien ?</strong><br>
+                            "How many apples are there?" → Combien y a-t-il de pommes ?<br>
+                            "How many brothers do you have?" → Combien de frères as-tu ?
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Autres mots interrogatifs utiles</h3>
+                        <div class="example">
+                            <strong>Who? → Qui ?</strong> "Who is she?" → Qui est-elle ?<br>
+                            <strong>When? → Quand ?</strong> "When is your birthday?" → Quand est ton anniversaire ?<br>
+                            <strong>Why? → Pourquoi ?</strong> "Why are you happy?" → Pourquoi es-tu content ?
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Localiser avec les prépositions</h3>
+                        <p class="content-text">
+                            Les prépositions permettent de dire où se trouve un objet ou une personne.
+                        </p>
+
+                        <div class="grammar-point">
+                            <h4>In → Dans</h4>
+                            <p class="content-text">
+                                "The pen is in the box." → Le stylo est dans la boîte.
+                            </p>
+                        </div>
+
+                        <div class="grammar-point">
+                            <h4>On → Sur</h4>
+                            <p class="content-text">
+                               "The book is on the table." → Le livre est sur la table.
+                            </p>
+                        </div>
+
+                        <div class="grammar-point">
+                            <h4>Under → Sous</h4>
+                            <p class="content-text">
+                              "The cat is under the chair." → Le chat est sous la chaise.
+                            </p>
+                        </div>
+
+                        <div class="grammar-point">
+                            <h4>Next to → À côté de</h4>
+                            <p class="content-text">
+                              "The pencil is next to the book." → Le crayon est à côté du livre.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>💡 Exemples de phrases complètes</h3>
+                        <div class="example">
+                            <strong>Où est... ?</strong><br>
+                            "Where is my bag?" → Où est mon sac ?<br>
+                            "It's on the chair." → Il est sur la chaise.<br><br>
+                            
+                            <strong>Combien de... ?</strong><br>
+                            "How many pencils do you have?" → Combien de crayons as-tu ?<br>
+                            "I have three pencils." → J'ai trois crayons.
+                        </div>
+                    </div>
+                
+                    <!-- BOUTON MARQUER COMME TERMINÉ -->
+                    <div class="navigation">
+                        <button class="nav-btn prev" onclick="window.location.href='../../cours.php'">← Retour aux cours</button>
+                        <button class="nav-btn complete" onclick="markAsComplete(3, 'phrase-complexe')">Marquer comme terminé ✓</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation entre les leçons
+        const lessons = document.querySelectorAll('.lesson');
+        const typeButtons = document.querySelectorAll('.type-btn');
+        const lessonContents = document.querySelectorAll('.lesson-content');
+        const mainContent = document.querySelector('.main-content');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileCloseBtn = document.querySelector('.mobile-close-btn');
+        const sidebar = document.querySelector('.sidebar');
+        const mobileToggleBtns = document.querySelectorAll('.mobile-toggle-btn');
+
+        // Gestion des leçons actives
+        lessons.forEach(lesson => {
+            lesson.addEventListener('click', function() {
+                // Retirer active de toutes les leçons
+                lessons.forEach(l => l.classList.remove('active'));
+                // Activer la leçon cliquée
+                this.classList.add('active');
+                
+                // Afficher le contenu correspondant
+                const lessonId = this.getAttribute('data-lesson');
+                showLessonContent(lessonId);
+                
+                // Sur mobile, cacher la sidebar après sélection
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        });
+
+        // Gestion des types de contenu (vidéo/écrit)
+        typeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                typeButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const contentType = this.getAttribute('data-type');
+                toggleContentType(contentType);
+            });
+        });
+
+        function showLessonContent(lessonId) {
+            // Cacher tous les contenus de leçon
+            lessonContents.forEach(content => content.classList.remove('active'));
+            // Afficher le contenu de la leçon sélectionnée
+            const targetContent = document.getElementById(lessonId + '-content');
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+            
+            // Remettre en mode vidéo par défaut
+            toggleContentType('video');
+            typeButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-type') === 'video') {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        function toggleContentType(type) {
+            if (type === 'video') {
+                mainContent.classList.remove('written-active');
+                mainContent.classList.add('content-active');
+            } else {
+                mainContent.classList.remove('content-active');
+                mainContent.classList.add('written-active');
+            }
+        }
+
+        // Gestion du menu mobile
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                sidebar.classList.add('active');
+            });
+        }
+
+        if (mobileCloseBtn) {
+            mobileCloseBtn.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+            });
+        }
+
+        mobileToggleBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                sidebar.classList.add('active');
+            });
+        });
+
+        // Fermer la sidebar en cliquant à l'extérieur sur mobile
+        document.addEventListener('click', function(event) {
+            if (window.innerWidth <= 768 && 
+                sidebar.classList.contains('active') &&
+                !sidebar.contains(event.target) &&
+                (!mobileMenuBtn || !mobileMenuBtn.contains(event.target)) &&
+                !event.target.classList.contains('mobile-toggle-btn')) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Au chargement, afficher la leçon active
+        document.addEventListener('DOMContentLoaded', function() {
+            const activeLesson = document.querySelector('.lesson.active');
+            if (activeLesson) {
+                const lessonId = activeLesson.getAttribute('data-lesson');
+                showLessonContent(lessonId);
+            }
+            
+            // Ajuster l'affichage sur mobile
+            if (window.innerWidth <= 768) {
+                toggleContentType('written');
+                typeButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-type') === 'written') {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+        });
+
+        // Fonction pour marquer un cours comme terminé
+        function markAsComplete(coursId, chapitreId) {
+            // Envoyer les données au serveur
+            fetch('mark_complete.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `cours_id=${coursId}&chapitre_id=${chapitreId}`
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data === 'success') {
+                    // Mettre à jour l'interface
+                    const lessonElement = document.querySelector(`.lesson[data-lesson="${chapitreId}"]`);
+                    if (lessonElement) {
+                        lessonElement.style.backgroundColor = '#2ecc71';
+                        lessonElement.style.color = 'white';
+                        lessonElement.innerHTML += ' ✓';
+                    }
+                    // Afficher une confirmation
+                    alert('Cours marqué comme terminé !');
+                } else {
+                    alert('Erreur lors du marquage du cours');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Erreur de connexion');
+            });
+        }
+    </script>
+</body>
+</html>
