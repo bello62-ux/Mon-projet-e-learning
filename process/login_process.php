@@ -1,3 +1,4 @@
+
 <?php
 include('../config/db.php');
 session_start();
@@ -7,7 +8,11 @@ $connexion_success = false;
 
 // Rediriger si déjà connecté
 if (isset($_SESSION['user_id'])) {
-    header("Location: index.php");
+    if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
+        header("Location: ../admin/layout/dashboard.php");
+    } else {
+        header("Location: ../index.php");
+    }
     exit();
 }
 
@@ -21,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Rechercher l'utilisateur par email
     $sql = "SELECT user_id, first_name, last_name, email, password, is_active, is_admin FROM Users WHERE email = ? AND is_active = 1";
     $stmt = $conn->prepare($sql);
     
@@ -44,19 +48,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['is_admin'] = $user['is_admin'];
         $_SESSION['connexion_success'] = true;
         
+        // Pour la sidebar admin
+        $_SESSION['admin_nom'] = $user['first_name'] . ' ' . $user['last_name'];
+        $_SESSION['admin_email'] = $user['email'];
+
         // Gérer "Se souvenir de moi"
         if ($remember_me) {
             $token = bin2hex(random_bytes(32));
-            $expiry = time() + (30 * 24 * 60 * 60); // 30 jours
-            
-            
+            $expiry = time() + (30 * 24 * 60 * 60);
             setcookie('remember_token', $token, $expiry, '/', '', false, true);
         }
         
         $stmt->close();
         $conn->close();
         
-        // Rediriger vers la page de connexion pour afficher le message de succès
         header("Location: ../authentification/login.php");
         exit();
         
@@ -67,7 +72,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->close();
         $conn->close();
         
-        // Rediriger vers la page de connexion pour afficher le message d'erreur
         header("Location: ../authentification/login.php");
         exit();
     }

@@ -32,7 +32,11 @@
     </div>
     <script>
         setTimeout(function() {
-            window.location.href = "./index.php";
+            <?php if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1): ?>
+                window.location.href = "../admin/layout/dashboard.php";
+            <?php else: ?>
+                window.location.href = "../index.php";
+            <?php endif; ?>
         }, 2000);
     </script>
     <?php endif; ?>
