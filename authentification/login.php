@@ -1,24 +1,30 @@
+<?php
+// Démarrer la session au tout début
+session_start();
+
+// Activer l'affichage des erreurs pour le debug (à enlever en production)
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Récupérer les messages de la session
+$connexion_success = isset($_SESSION['connexion_success']) ? $_SESSION['connexion_success'] : false;
+$connexion_error = isset($_SESSION['connexion_error']) ? $_SESSION['connexion_error'] : "";
+$user_first_name = isset($_SESSION['user_first_name']) ? $_SESSION['user_first_name'] : "";
+
+// Nettoyer les messages de la session après les avoir récupérés
+unset($_SESSION['connexion_success']);
+unset($_SESSION['connexion_error']);
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../asset/css/login.css">
-    <title>Connexion</title>
+    <title>Connexion - Plateforme Éducative</title>
 </head>
 <body>
-    <?php  
-    // Récupérer les messages de la session
-    session_start();
-    $connexion_success = isset($_SESSION['connexion_success']) ? $_SESSION['connexion_success'] : false;
-    $connexion_error = isset($_SESSION['connexion_error']) ? $_SESSION['connexion_error'] : "";
-    $user_first_name = isset($_SESSION['first_name']) ? $_SESSION['first_name'] : "";
-    
-    // Nettoyer les messages de la session après les avoir récupérés
-    unset($_SESSION['connexion_success']);
-    unset($_SESSION['connexion_error']);
-    ?>
-
     <?php if ($connexion_success): ?>
     <div class="overlay"></div>
     <div class="success-popup">
@@ -52,7 +58,7 @@
                 <div class="alert alert-error"><?php echo htmlspecialchars($connexion_error); ?></div>
             <?php endif; ?>
             
-            <!-- IMPORTANT: Le formulaire pointe maintenant vers login_process.php -->
+            <!-- Formulaire qui pointe vers login_process.php -->
             <form method="POST" action="../process/login_process.php" class="login-form">
                 <div class="form-group">
                     <label for="email">Email</label>
@@ -107,6 +113,12 @@
                 }
             });
         });
+
+        // Debug
+        console.log("Page login.php chargée");
+        <?php if ($connexion_success): ?>
+        console.log("Succès de connexion détecté");
+        <?php endif; ?>
     </script>
 </body>
 </html>

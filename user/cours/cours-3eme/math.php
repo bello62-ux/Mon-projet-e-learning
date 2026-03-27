@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../asset/css/cours-francais.css">
+    <title>Mathématiques </title>
+</head>
+<body>
+     
+
+    <div class="course-container">
+        <!-- Sidebar avec chapitres -->
+        <div class="sidebar">
+            <div class="course-title">
+                <h1>Mathématiques 3ème</h1>
+                <div class="mobile-close-btn">×</div>
+            </div>
+            
+            <div class="chapters">
+                <div class="chapter">
+                    <div class="chapter-title">Chapitre 1 : Calcul Numérique</div>
+                    <ul class="lessons">
+                        <li class="lesson active" data-lesson="calcul">Nombres relatifs et puissances</li>
+                    </ul>
+                </div>
+                
+                <div class="chapter">
+                    <div class="chapter-title">Chapitre 2 : Calcul Littéral</div>
+                    <ul class="lessons">
+                        <li class="lesson" data-lesson="littéral">Développement et factorisation</li>
+                    </ul>
+                </div>
+                
+                <div class="chapter">
+                    <div class="chapter-title">Chapitre 3 : Équations et Inéquations</div>
+                    <ul class="lessons">
+                        <li class="lesson" data-lesson="equations">Résolution du premier degré</li>
+                    </ul>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">Chapitre 4 : Fonctions</div>
+                    <ul class="lessons">
+                        <li class="lesson" data-lesson="fonctions">Fonctions linéaires et affines</li>
+                    </ul>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">Chapitre 5 : Géométrie</div>
+                    <ul class="lessons">
+                        <li class="lesson" data-lesson="geometrie">Thalès et Pythagore</li>
+                    </ul>
+                </div>
+
+                <div class="chapter">
+                    <div class="chapter-title">Chapitre 6 : Statistiques</div>
+                    <ul class="lessons">
+                        <li class="lesson" data-lesson="statistiques">Moyenne, médiane et probabilités</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenu principal -->
+        <div class="main-content content-active">
+            
+            <!-- ========== CHAPITRE 1 : CALCUL NUMÉRIQUE ========== -->
+            <div class="lesson-content active" id="calcul-content">
+                <div class="lesson-header">
+                    <div class="mobile-lesson-title">
+                        <h2>Calcul Numérique</h2>
+                        <button class="mobile-toggle-btn">☰ Menu</button>
+                    </div>
+                </div>
+
+                <div class="lesson-type">
+                    <button class="type-btn active" data-type="video">Vidéo du cours</button>
+                    <button class="type-btn" data-type="written">Cours écrit</button>
+                </div>
+
+                <!-- CONTENU VIDÉO -->
+                <div class="video-content">
+                    <div class="video-placeholder">
+                       <h1>VIDÉO - CALCUL NUMÉRIQUE 3ÈME</h1>  
+                    </div>   
+                </div>
+
+                <!-- CONTENU ÉCRIT -->
+                <div class="written-content">
+                    <div class="content-section">
+                        <h3>Nombres relatifs</h3>
+
+                        <div class="grammar-point">
+                            <h4>Opérations avec les nombres relatifs :</h4>
+                            
+                            <div class="example">
+                                <strong>Addition :</strong> (+5) + (-3) = +2<br>
+                                <strong>Soustraction :</strong> (-4) - (+2) = -6<br>
+                                <strong>Multiplication :</strong> (-3) × (+4) = -12<br>
+                                <strong>Division :</strong> (-15) ÷ (+3) = -5<br>
+                            </div>
+                            <p><strong>Règle des signes :</strong> même signe → positif, signes différents → négatif</p>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Puissances</h3>
+                        <p><strong>Définition :</strong> aⁿ = a × a × ... × a (n fois)</p>
+                        <div class="example">
+                            <strong>5³ = 5 × 5 × 5 = 125</strong><br>
+                            <strong>10² = 10 × 10 = 100</strong><br>
+                            <strong>2⁴ = 2 × 2 × 2 × 2 = 16</strong><br>
+                            <strong>a⁰ = 1</strong> (pour a ≠ 0)
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Priorités des opérations</h3>
+                        <p><strong>Ordre à respecter :</strong> Parenthèses → Puissances → Multiplication/Division → Addition/Soustraction</p>
+                        <div class="example">
+                            <strong>3 + 4 × 5 = 3 + 20 = 23</strong><br>
+                            <strong>(3 + 4) × 5 = 7 × 5 = 35</strong><br>
+                            <strong>2³ + 3 × 4 = 8 + 12 = 20</strong>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Notation scientifique</h3>
+                        <p class="content-text">
+                            Un nombre en notation scientifique s'écrit a × 10ⁿ où 1 ≤ a < 10
+                        </p>
+                        <div class="example">
+                            <strong>4500 = 4,5 × 10³</strong><br>
+                            <strong>0,0032 = 3,2 × 10⁻³</strong><br>
+                            <strong>La vitesse de la lumière : 3 × 10⁸ m/s</strong>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>💡 Propriétés des puissances</h3>
+                        <div class="table-container">
+                            <table class="conjugation-table">
+                                <tr>
+                                    <th>Propriété</th>
+                                    <th>Formule</th>
+                                    <th>Exemple</th>
+                                </tr>
+                                <tr>
+                                    <td>Produit</td>
+                                    <td>aⁿ × aᵐ = aⁿ⁺ᵐ</td>
+                                    <td>2³ × 2² = 2⁵ = 32</td>
+                                </tr>
+                                <tr>
+                                    <td>Quotient</td>
+                                    <td>aⁿ ÷ aᵐ = aⁿ⁻ᵐ</td>
+                                    <td>5⁴ ÷ 5² = 5² = 25</td>
+                                </tr>
+                                <tr>
+                                    <td>Puissance de puissance</td>
+                                    <td>(aⁿ)ᵐ = aⁿ×ᵐ</td>
+                                    <td>(3²)³ = 3⁶ = 729</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                        
+                    <!-- BOUTON MARQUER COMME TERMINÉ -->
+                    <div class="navigation">
+                        <button class="nav-btn prev" onclick="window.location.href='../../cours.php'">← Retour aux cours</button>
+                        <button class="nav-btn complete" onclick="markAsComplete('calcul')">Marquer comme terminé ✓</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== CHAPITRE 2 : CALCUL LITTÉRAL ========== -->
+            <div class="lesson-content" id="littéral-content">
+                <div class="lesson-header">
+                    <div class="mobile-lesson-title">
+                        <h2>Calcul Littéral</h2>
+                        <button class="mobile-toggle-btn">☰ Menu</button>
+                    </div>
+                </div>
+
+                <div class="lesson-type">
+                    <button class="type-btn active" data-type="video">Vidéo du cours</button>
+                    <button class="type-btn" data-type="written">Cours écrit</button>
+                </div>
+
+                <!-- CONTENU VIDÉO -->
+                <div class="video-content">
+                    <div class="video-placeholder">
+                       <h1>VIDÉO - CALCUL LITTÉRAL 3ÈME</h1>
+                    </div>
+                </div>
+
+                <!-- CONTENU ÉCRIT -->
+                <div class="written-content">
+                    <div class="content-section">
+                        <h3>Développement</h3>
+                        <p class="content-text">
+                           <strong>Distributivité :</strong> k(a + b) = ka + kb
+                        </p>
+                        <div class="example">
+                            <strong>3(x + 4) = 3x + 12</strong><br>
+                            <strong>-2(3x - 5) = -6x + 10</strong><br>
+                            <strong>(x + 2)(x + 3) = x² + 3x + 2x + 6 = x² + 5x + 6</strong>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Factorisation</h3>
+                        <p class="content-text">
+                           <strong>Mettre en facteur commun :</strong> ka + kb = k(a + b)
+                        </p>
+                        <div class="example">
+                            <strong>3x + 6 = 3(x + 2)</strong><br>
+                            <strong>x² + 5x = x(x + 5)</strong><br>
+                            <strong>4x² - 8x = 4x(x - 2)</strong>
+                        </div>
+                    </div>
+                         
+                    <div class="content-section">
+                        <h3>Identités remarquables</h3>
+                        <p class="content-text">
+                            <strong>À connaître par cœur :</strong>
+                        </p>
+                        <div class="example">
+                            <strong>(a + b)² = a² + 2ab + b²</strong><br>
+                            <strong>(a - b)² = a² - 2ab + b²</strong><br>
+                            <strong>(a + b)(a - b) = a² - b²</strong>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Réduction d'expressions</h3>
+                        <p class="content-text">
+                           <strong>Regrouper les termes semblables</strong>
+                        </p>
+                        <div class="example">
+                            <strong>3x + 2x² - x + 4x² = 2x + 6x²</strong><br>
+                            <strong>5a - 2b + 3a + 4b = 8a + 2b</strong><br>
+                            <strong>2(x + 3) - 3(x - 1) = 2x + 6 - 3x + 3 = -x + 9</strong>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>💡 Applications des identités remarquables</h3>
+                        <div class="example">
+                            <strong>Développement :</strong> (2x + 3)² = 4x² + 12x + 9<br>
+                            <strong>Factorisation :</strong> x² - 9 = (x + 3)(x - 3)<br>
+                            <strong>Calcul mental :</strong> 101² = (100 + 1)² = 10000 + 200 + 1 = 10201
+                        </div>
+                    </div>
+                    
+                    <!-- BOUTON MARQUER COMME TERMINÉ -->
+                    <div class="navigation">
+                        <button class="nav-btn prev" onclick="window.location.href='../../cours.php'">← Retour aux cours</button>
+                        <button class="nav-btn complete" onclick="markAsComplete('littéral')">Marquer comme terminé ✓</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== CHAPITRE 3 : ÉQUATIONS ========== -->
+            <div class="lesson-content" id="equations-content">
+                <div class="lesson-header">
+                    <div class="mobile-lesson-title">
+                        <h2>Équations et Inéquations</h2>
+                        <button class="mobile-toggle-btn">☰ Menu</button>
+                    </div>
+                </div>
+
+                <div class="lesson-type">
+                    <button class="type-btn active" data-type="video">Vidéo du cours</button>
+                    <button class="type-btn" data-type="written">Cours écrit</button>
+                </div>
+
+                <!-- CONTENU VIDÉO -->
+                <div class="video-content">
+                    <div class="video-placeholder">
+                        <h1>VIDÉO - ÉQUATIONS 3ÈME</h1>
+                    </div>
+                </div>
+
+                <!-- CONTENU ÉCRIT -->
+                <div class="written-content">
+                    <div class="content-section">
+                        <h3>Équations du premier degré</h3>
+                        <p class="content-text">
+                           <strong>Forme générale :</strong> ax + b = 0
+                        </p>
+                        <div class="example">
+                            <strong>2x + 3 = 7 → 2x = 4 → x = 2</strong><br>
+                            <strong>3(x - 2) = 5 → 3x - 6 = 5 → 3x = 11 → x = 11/3</strong><br>
+                            <strong>4x - 8 = 2x + 4 → 2x = 12 → x = 6</strong>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Inéquations du premier degré</h3>
+                        <p class="content-text">
+                            <strong>Attention !</strong> Quand on multiplie ou divise par un nombre négatif, on change le sens de l'inégalité.
+                        </p>
+                        <div class="example">
+                            <strong>3x + 2 < 8 → 3x < 6 → x < 2</strong><br>
+                            <strong>-2x > 4 → x < -2 (on change le sens)</strong><br>
+                            <strong>5 - 2x ≥ 1 → -2x ≥ -4 → x ≤ 2</strong>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Mise en équation de problèmes</h3>
+                        <p class="content-text">
+                           Traduction d'un énoncé en langage mathématique
+                        </p>
+                        <div class="example">
+                            <strong>"Le double d'un nombre augmenté de 5 vaut 13" → 2x + 5 = 13</strong><br>
+                            <strong>"La somme de deux nombres vaut 20" → x + y = 20</strong><br>
+                            <strong>"Un nombre et son triple ont pour somme 24" → x + 3x = 24</strong>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Vérification des solutions</h3>
+                        <p class="content-text">
+                            <strong>Toujours vérifier</strong> que la solution trouvée satisfait l'équation
+                        </p>
+                        <div class="example">
+                            <strong>Pour 2x + 3 = 7, solution x = 2</strong><br>
+                            <strong>Vérif : 2×2 + 3 = 4 + 3 = 7 ✓</strong>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>💡 Méthode de résolution</h3>
+                        <div class="grammar-point">
+                            <h4>Étapes pour résoudre ax + b = c :</h4>
+                            <p class="content-text">
+                                1. <strong>Simplifier</strong> chaque membre<br>
+                                2. <strong>Isoler</strong> les termes en x d'un côté<br>
+                                3. <strong>Réduire</strong> l'expression<br>
+                                4. <strong>Diviser</strong> par le coefficient de x<br>
+                                5. <strong>Vérifier</strong> la solution
+                            </p>
+                        </div>
+                    </div>
+                       
+                    <!-- BOUTON MARQUER COMME TERMINÉ -->
+                    <div class="navigation">
+                        <button class="nav-btn prev" onclick="window.location.href='../../cours.php'">← Retour aux cours</button>
+                        <button class="nav-btn complete" onclick="markAsComplete('equations')">Marquer comme terminé ✓</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== CHAPITRE 4 : FONCTIONS ========== -->
+            <div class="lesson-content" id="fonctions-content">
+                <div class="lesson-header">
+                    <div class="mobile-lesson-title">
+                        <h2>Fonctions</h2>
+                        <button class="mobile-toggle-btn">☰ Menu</button>
+                    </div>
+                </div>
+
+                <div class="lesson-type">
+                    <button class="type-btn active" data-type="video">Vidéo du cours</button>
+                    <button class="type-btn" data-type="written">Cours écrit</button>
+                </div>
+
+                <!-- CONTENU VIDÉO -->
+                <div class="video-content">
+                    <div class="video-placeholder">
+                       <h1>VIDÉO - FONCTIONS 3ÈME</h1>  
+                    </div>   
+                </div>
+
+                <!-- CONTENU ÉCRIT -->
+                <div class="written-content">
+                    <div class="content-section">
+                        <h3>Fonctions linéaires</h3>
+                        <div class="grammar-point">
+                            <h4>Forme : f(x) = ax</h4>
+                            <div class="example">
+                                <strong>Exemple :</strong> f(x) = 3x<br>
+                                <strong>Représentation graphique :</strong> droite passant par l'origine<br>
+                                <strong>Proportionnalité :</strong> image proportionnelle à l'antécédent<br>
+                                <strong>Coefficient directeur :</strong> a = pente de la droite
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Fonctions affines</h3>
+                        <p><strong>Forme :</strong> f(x) = ax + b</p>
+                        <div class="example">
+                            <strong>Exemple :</strong> f(x) = 2x + 3<br>
+                            <strong>b = ordonnée à l'origine</strong> (valeur en x=0)<br>
+                            <strong>a = coefficient directeur</strong><br>
+                            <strong>Représentation :</strong> droite ne passant pas par l'origine
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Représentation graphique</h3>
+                        <p>Dans un repère orthonormé (O, I, J)</p>
+                        <div class="example">
+                            <strong>Pour tracer f(x) = 2x + 1 :</strong><br>
+                            • <strong>Point A(0,1)</strong> car f(0)=1<br>
+                            • <strong>Point B(1,3)</strong> car f(1)=3<br>
+                            • <strong>Tracer la droite (AB)</strong>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Lecture graphique</h3>
+                        <div class="example">
+                            <strong>Image</strong> → valeur de f(x) pour un x donné<br>
+                            <strong>Antécédent</strong> → valeur de x pour un f(x) donné<br>
+                            <strong>Exemple :</strong> si f(2)=5, alors image de 2 est 5 et antécédent de 5 est 2
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Fonction carré</h3>
+                        <p><strong>Introduction :</strong> f(x) = x²</p>
+                        <div class="example">
+                            <strong>Courbe :</strong> parabole<br>
+                            <strong>Symétrie :</strong> par rapport à l'axe des ordonnées<br>
+                            <strong>Minimum :</strong> en (0,0)<br>
+                            <strong>Tableau de valeurs :</strong> f(-2)=4, f(-1)=1, f(0)=0, f(1)=1, f(2)=4
+                        </div>
+                    </div>
+                    
+                    <!-- BOUTON MARQUER COMME TERMINÉ -->
+                    <div class="navigation">
+                        <button class="nav-btn prev" onclick="window.location.href='cours.html'">← Retour aux cours</button>
+                        <button class="nav-btn complete" onclick="markAsComplete('fonctions')">Marquer comme terminé ✓</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== CHAPITRE 5 : GÉOMÉTRIE ========== -->
+            <div class="lesson-content" id="geometrie-content">
+                <div class="lesson-header">
+                    <div class="mobile-lesson-title">
+                        <h2>Géométrie</h2>
+                        <button class="mobile-toggle-btn">☰ Menu</button>
+                    </div>
+                </div>
+
+                <div class="lesson-type">
+                    <button class="type-btn active" data-type="video">Vidéo du cours</button>
+                    <button class="type-btn" data-type="written">Cours écrit</button>
+                </div>
+
+                <!-- CONTENU VIDÉO -->
+                <div class="video-content">
+                    <div class="video-placeholder">
+                       <h1>VIDÉO - GÉOMÉTRIE 3ÈME</h1>  
+                    </div>   
+                </div>
+
+                <!-- CONTENU ÉCRIT -->
+                <div class="written-content">
+                    <div class="content-section">
+                        <h3>Théorème de Thalès</h3>
+                        <div class="grammar-point">
+                            <h4>Configuration "papillon" ou "triangles emboîtés"</h4>
+                            <div class="example">
+                                <strong>Si (BC) // (DE) alors :</strong><br>
+                                AD/AB = AE/AC = DE/BC<br>
+                                <strong>Utilisation :</strong> calcul de longueurs inconnues<br>
+                                <strong>Réciproque :</strong> vérifier le parallélisme
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Théorème de Pythagore</h3>
+                        <p><strong>Dans un triangle rectangle :</strong></p>
+                        <div class="example">
+                            AB² + AC² = BC²<br>
+                            <strong>BC étant l'hypoténuse</strong><br>
+                            <strong>Exemple :</strong> triangle 3-4-5 → 3²+4²=9+16=25=5²<br>
+                            <strong>Réciproque :</strong> si AB²+AC²=BC² alors triangle rectangle
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Trigonométrie</h3>
+                        <p><strong>Dans un triangle rectangle :</strong></p>
+                        <div class="example">
+                            <strong>sin(angle) = côté opposé / hypoténuse</strong><br>
+                            <strong>cos(angle) = côté adjacent / hypoténuse</strong><br>
+                            <strong>tan(angle) = côté opposé / côté adjacent</strong><br>
+                            <strong>SOH-CAH-TOA :</strong> moyen mnémotechnique
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Vecteurs</h3>
+                        <div class="example">
+                            <strong>Translation</strong> → déplacement selon un vecteur<br>
+                            <strong>Coordonnées</strong> → (xᵦ - xₐ, yᵦ - yₐ)<br>
+                            <strong>Égalité</strong> → même direction, sens et longueur<br>
+                            <strong>Somme</strong> → relation de Chasles
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Aires et volumes</h3>
+                        <p><strong>Formules à connaître :</strong></p>
+                        <div class="example">
+                            <strong>Sphère :</strong> V = (4/3)πR³, A = 4πR²<br>
+                            <strong>Cône :</strong> V = (1/3)πR²h<br>
+                            <strong>Pyramide :</strong> V = (1/3)×Aire base×h<br>
+                            <strong>Cylindre :</strong> V = πR²h, A latérale = 2πRh
+                        </div>
+                    </div>
+                    
+                    <!-- BOUTON MARQUER COMME TERMINÉ -->
+                    <div class="navigation">
+                        <button class="nav-btn prev" onclick="window.location.href='cours.html'">← Retour aux cours</button>
+                        <button class="nav-btn complete" onclick="markAsComplete('geometrie')">Marquer comme terminé ✓</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== CHAPITRE 6 : STATISTIQUES ========== -->
+            <div class="lesson-content" id="statistiques-content">
+                <div class="lesson-header">
+                    <div class="mobile-lesson-title">
+                        <h2>Statistiques et Probabilités</h2>
+                        <button class="mobile-toggle-btn">☰ Menu</button>
+                    </div>
+                </div>
+
+                <div class="lesson-type">
+                    <button class="type-btn active" data-type="video">Vidéo du cours</button>
+                    <button class="type-btn" data-type="written">Cours écrit</button>
+                </div>
+
+                <!-- CONTENU VIDÉO -->
+                <div class="video-content">
+                    <div class="video-placeholder">
+                       <h1>VIDÉO - STATISTIQUES 3ÈME</h1>  
+                    </div>   
+                </div>
+
+                <!-- CONTENU ÉCRIT -->
+                <div class="written-content">
+                    <div class="content-section">
+                        <h3>Statistiques descriptives</h3>
+                        <div class="grammar-point">
+                            <h4>Caractéristiques d'une série :</h4>
+                            <div class="example">
+                                <strong>Moyenne :</strong> somme des valeurs / effectif total<br>
+                                <strong>Médiane :</strong> valeur qui sépare la série en deux<br>
+                                <strong>Étendue :</strong> différence entre max et min<br>
+                                <strong>Quartiles :</strong> Q1, Q2 (médiane), Q3
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Représentations graphiques</h3>
+                        <p><strong>Différents types de diagrammes :</strong></p>
+                        <div class="example">
+                            <strong>Diagramme en bâtons</strong><br>
+                            <strong>Histogramme</strong> (pour classes)<br>
+                            <strong>Diagramme circulaire</strong> (camembert)<br>
+                            <strong>Boîte à moustaches</strong> (diagramme de Tukey)
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Probabilités</h3>
+                        <p><strong>Définition et calcul :</strong></p>
+                        <div class="example">
+                            <strong>Probabilité = nombre cas favorables / nombre cas possibles</strong><br>
+                            <strong>0 ≤ P(A) ≤ 1</strong><br>
+                            <strong>Événement certain :</strong> P=1<br>
+                            <strong>Événement impossible :</strong> P=0
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Expériences aléatoires</h3>
+                        <div class="example">
+                            <strong>Lancer de dé</strong> → univers = {1,2,3,4,5,6}<br>
+                            <strong>Pièce de monnaie</strong> → univers = {Pile, Face}<br>
+                            <strong>Tirages</strong> → avec ou sans remise<br>
+                            <strong>Arbre pondéré</strong> → calcul de probabilités composées
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>Probabilités et fréquences</h3>
+                        <p><strong>Loi des grands nombres :</strong></p>
+                        <div class="example">
+                            <strong>Quand n → ∞, fréquence → probabilité</strong><br>
+                            <strong>Simulation d'expériences</strong><br>
+                            <strong>Fluctuations d'échantillonnage</strong>
+                        </div>
+                    </div>
+                    
+                    <!-- BOUTON MARQUER COMME TERMINÉ -->
+                    <div class="navigation">
+                        <button class="nav-btn prev" onclick="window.location.href='cours.html'">← Retour aux cours</button>
+                        <button class="nav-btn complete" onclick="markAsComplete('statistiques')">Marquer comme terminé ✓</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation entre les leçons
+        const lessons = document.querySelectorAll('.lesson');
+        const typeButtons = document.querySelectorAll('.type-btn');
+        const lessonContents = document.querySelectorAll('.lesson-content');
+        const mainContent = document.querySelector('.main-content');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileCloseBtn = document.querySelector('.mobile-close-btn');
+        const sidebar = document.querySelector('.sidebar');
+        const mobileToggleBtns = document.querySelectorAll('.mobile-toggle-btn');
+
+        // Gestion des leçons actives
+        lessons.forEach(lesson => {
+            lesson.addEventListener('click', function() {
+                // Retirer active de toutes les leçons
+                lessons.forEach(l => l.classList.remove('active'));
+                // Activer la leçon cliquée
+                this.classList.add('active');
+                
+                // Afficher le contenu correspondant
+                const lessonId = this.getAttribute('data-lesson');
+                showLessonContent(lessonId);
+                
+                // Sur mobile, cacher la sidebar après sélection
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        });
+
+        // Gestion des types de contenu (vidéo/écrit)
+        typeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                typeButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const contentType = this.getAttribute('data-type');
+                toggleContentType(contentType);
+            });
+        });
+
+        function showLessonContent(lessonId) {
+            // Cacher tous les contenus de leçon
+            lessonContents.forEach(content => content.classList.remove('active'));
+            // Afficher le contenu de la leçon sélectionnée
+            const targetContent = document.getElementById(lessonId + '-content');
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+            
+            // Remettre en mode vidéo par défaut
+            toggleContentType('video');
+            typeButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-type') === 'video') {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        function toggleContentType(type) {
+            if (type === 'video') {
+                mainContent.classList.remove('written-active');
+                mainContent.classList.add('content-active');
+            } else {
+                mainContent.classList.remove('content-active');
+                mainContent.classList.add('written-active');
+            }
+        }
+
+        // Gestion du menu mobile
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                sidebar.classList.add('active');
+            });
+        }
+
+        if (mobileCloseBtn) {
+            mobileCloseBtn.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+            });
+        }
+
+        mobileToggleBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                sidebar.classList.add('active');
+            });
+        });
+
+        // Fermer la sidebar en cliquant à l'extérieur sur mobile
+        document.addEventListener('click', function(event) {
+            if (window.innerWidth <= 768 && 
+                sidebar.classList.contains('active') &&
+                !sidebar.contains(event.target) &&
+                (!mobileMenuBtn || !mobileMenuBtn.contains(event.target)) &&
+                !event.target.classList.contains('mobile-toggle-btn')) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Au chargement, afficher la leçon active
+        document.addEventListener('DOMContentLoaded', function() {
+            const activeLesson = document.querySelector('.lesson.active');
+            if (activeLesson) {
+                const lessonId = activeLesson.getAttribute('data-lesson');
+                showLessonContent(lessonId);
+            }
+            
+            // Ajuster l'affichage sur mobile
+            if (window.innerWidth <= 768) {
+                toggleContentType('written');
+                typeButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-type') === 'written') {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+        });
+
+        // Fonction pour marquer un cours comme terminé - MATH 3ÈME
+        function markAsComplete(chapitreId) {
+            const coursMathIds = {
+                'calcul': 13,        // Calcul Numérique
+                'littéral': 14,      // Calcul Littéral
+                'equations': 15,     // Équations et Inéquations
+                'fonctions': 16,     // Fonctions
+                'geometrie': 17,     // Géométrie
+                'statistiques': 18   // Statistiques et Probabilités
+            };
+            
+            const coursId = coursMathIds[chapitreId];
+            
+            if (!coursId) {
+                alert('Erreur : ID du cours non trouvé pour: ' + chapitreId);
+                return;
+            }
+            
+            fetch('mark_complete.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `cours_id=${coursId}&chapitre_id=${chapitreId}`
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data === 'success') {
+                    const lessonElement = document.querySelector(`.lesson[data-lesson="${chapitreId}"]`);
+                    if (lessonElement) {
+                        lessonElement.style.backgroundColor = '#2ecc71';
+                        lessonElement.style.color = 'white';
+                        lessonElement.innerHTML += ' ✓';
+                    }
+                    alert('Cours marqué comme terminé !');
+                } else {
+                    alert('Erreur serveur: ' + data);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Erreur de connexion: ' + error);
+            });
+        }
+    </script>
+</body>
+</html>

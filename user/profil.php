@@ -12,37 +12,68 @@ require_once '../config/db.php';
 
 $user_id = $_SESSION['user_id'];
 
+// Inclure la vérification d'authentification
+require_once '../config/check_auth.php';
+
+// Forcer la connexion - redirige vers login si non connecté
+requireLogin();
+
+// Le reste du code de profil.php continue ici...
+
+// ... (la suite de votre code)
+
 // Récupérer les informations de l'utilisateur
-$sql = "SELECT first_name, last_name, email, niveau_scolaire, creating_date FROM User WHERE user_id = ?";
+$sql = "SELECT user_id, first_name, last_name, email, birthday, telephone, is_admin, is_active, classroom_id, date_creation FROM users WHERE user_id = ? AND is_active = 1";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
+// Vérifier si l'utilisateur existe et est actif
+if (!$user) {
+    session_destroy();
+    header("Location: ../index.php");
+    exit();
+}
+
 // Nom complet
 $full_name = $user['first_name'] . ' ' . $user['last_name'];
-$niveau = $user['niveau_scolaire'];
 $email = $user['email'];
-$date_inscription = date('d/m/Y', strtotime($user['creating_date']));
+$birthday = $user['birthday'] ? date('d/m/Y', strtotime($user['birthday'])) : 'Non renseigné';
+$telephone = $user['telephone'] ?: 'Non renseigné';
+$date_inscription = date('d/m/Y', strtotime($user['date_creation']));
+$classroom_id = $user['classroom_id'];
 
-// Récupérer les cours terminés (exemple de structure – à adapter selon votre schéma)
-$sql_progress = "SELECT c.title, c.duree, pc.creating_date 
-                 FROM Progress_lessons pc 
-                 JOIN Lessons c ON pc.lessons_id = c.lessons_id 
-                 WHERE pc.user_id = ? 
-                 ORDER BY pc.creating_date DESC";
+// Déterminer le niveau scolaire à partir de classroom_id (à adapter selon votre logique)
+$niveau = '';
+switch($classroom_id) {
+    case 1:
+        $niveau = 'CM2';
+        break;
+    case 2:
+        $niveau = '3ème';
+        break;
+    case 3:
+        $niveau = 'Terminale';
+        break;
+    default:
+        $niveau = 'Non défini';
+}
+
+// Récupérer les cours terminés (à adapter selon votre schéma)
+$sql_progress = "SELECT COUNT(*) as total FROM progress_lessons WHERE user_id = ?";
 $stmt_progress = $conn->prepare($sql_progress);
 $stmt_progress->bind_param("i", $user_id);
 $stmt_progress->execute();
 $result_progress = $stmt_progress->get_result();
-$cours_termines = $result_progress->fetch_all(MYSQLI_ASSOC);
-$nb_cours_termines = count($cours_termines);
+$row_progress = $result_progress->fetch_assoc();
+$nb_cours_termines = $row_progress['total'] ?? 0;
 
-// Compter le total des cours pour le niveau de l'utilisateur
-$sql_total = "SELECT COUNT(*) as total FROM Lessons WHERE niveau = ?";
+// Compter le total des cours pour le niveau (à adapter selon votre schéma)
+$sql_total = "SELECT COUNT(*) as total FROM lessons WHERE classroom_id = ?";
 $stmt_total = $conn->prepare($sql_total);
-$stmt_total->bind_param("s", $niveau);
+$stmt_total->bind_param("i", $classroom_id);
 $stmt_total->execute();
 $result_total = $stmt_total->get_result();
 $total_cours = $result_total->fetch_assoc()['total'] ?: 0;
@@ -58,14 +89,14 @@ $conn->close();
 
 // Icône et couleur selon le niveau
 $niveau_icons = [
-    'cm2' => '🎒',
-    '3eme' => '📚',
-    'terminale' => '🎓'
+    'CM2' => '🎒',
+    '3ème' => '📚',
+    'Terminale' => '🎓'
 ];
 $niveau_colors = [
-    'cm2' => '#e74c3c',
-    '3eme' => '#3498db',
-    'terminale' => '#2ecc71'
+    'CM2' => '#e74c3c',
+    '3ème' => '#3498db',
+    'Terminale' => '#2ecc71'
 ];
 $icon = $niveau_icons[$niveau] ?? '👤';
 $color = $niveau_colors[$niveau] ?? '#34495e';
@@ -87,7 +118,7 @@ $color = $niveau_colors[$niveau] ?? '#34495e';
             </div>
             <div class="welcome-message">Bienvenue sur ton profil</div>
             <div class="user-name"><?php echo htmlspecialchars($full_name); ?></div>
-            <div class="user-level">Niveau : <?php echo strtoupper($niveau); ?></div>
+            <div class="user-level">Niveau : <?php echo $niveau; ?></div>
         </div>
 
         <div class="profile-content">
@@ -97,13 +128,27 @@ $color = $niveau_colors[$niveau] ?? '#34495e';
                     <div class="info-value"><?php echo htmlspecialchars($email); ?></div>
                 </div>
                 <div class="info-card">
+                    <div class="info-label">📞 Téléphone</div>
+                    <div class="info-value"><?php echo htmlspecialchars($telephone); ?></div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">🎂 Date de naissance</div>
+                    <div class="info-value"><?php echo $birthday; ?></div>
+                </div>
+                <div class="info-card">
                     <div class="info-label">🎓 Niveau scolaire</div>
-                    <div class="info-value"><?php echo strtoupper($niveau); ?></div>
+                    <div class="info-value"><?php echo $niveau; ?></div>
                 </div>
                 <div class="info-card">
                     <div class="info-label">📅 Date d'inscription</div>
                     <div class="info-value"><?php echo $date_inscription; ?></div>
                 </div>
+                <?php if ($user['is_admin']): ?>
+                <div class="info-card">
+                    <div class="info-label">👑 Statut</div>
+                    <div class="info-value">Administrateur</div>
+                </div>
+                <?php endif; ?>
             </div>
 
             <div class="stats-grid">
@@ -128,13 +173,27 @@ $color = $niveau_colors[$niveau] ?? '#34495e';
                 <h3>📖 Mes cours complétés</h3>
                 <div class="chapitres-list">
                     <?php if ($nb_cours_termines > 0): ?>
-                        <?php foreach ($cours_termines as $cours): ?>
+                        <?php
+                        // Récupérer les détails des cours terminés
+                        $sql_details = "SELECT l.title, l.duree, pl.date_completion 
+                                       FROM progress_lessons pl 
+                                       JOIN lessons l ON pl.lesson_id = l.lesson_id 
+                                       WHERE pl.user_id = ? 
+                                       ORDER BY pl.date_completion DESC 
+                                       LIMIT 10";
+                        $stmt_details = $conn->prepare($sql_details);
+                        $stmt_details->bind_param("i", $user_id);
+                        $stmt_details->execute();
+                        $result_details = $stmt_details->get_result();
+                        while ($cours = $result_details->fetch_assoc()):
+                        ?>
                             <div class="chapitre-item">
                                 <strong><?php echo htmlspecialchars($cours['title']); ?></strong><br>
                                 <small>Durée : <?php echo htmlspecialchars($cours['duree']); ?></small><br>
-                                <em>Terminé le : <?php echo date('d/m/Y', strtotime($cours['creating_date'])); ?></em>
+                                <em>Terminé le : <?php echo date('d/m/Y', strtotime($cours['date_completion'])); ?></em>
                             </div>
-                        <?php endforeach; ?>
+                        <?php endwhile; ?>
+                        <?php $stmt_details->close(); ?>
                     <?php else: ?>
                         <div class="chapitre-item">Aucun cours complété pour le moment</div>
                     <?php endif; ?>
@@ -142,8 +201,8 @@ $color = $niveau_colors[$niveau] ?? '#34495e';
             </div>
 
             <div class="actions">
-                <a href="../ACCUEIL/cours.php" class="btn btn-primary">📚 Accéder aux cours</a>
-                <a href="../AUTHENTIFICATION/logout.php" class="btn btn-logout">🚪 Déconnexion</a>
+                <a href="../../user/cours.php" class="btn btn-primary">📚 Accéder aux cours</a>
+                <a href="../authentification/logout.php" class="btn btn-logout">🚪 Déconnexion</a>
             </div>
         </div>
     </div>
