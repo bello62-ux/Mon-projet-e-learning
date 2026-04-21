@@ -96,6 +96,7 @@ if(!$chapter){
                                                             <option value="0">Inactif</option>
                                                         </select>
                                                     </div>
+
                                                     <div class="col-12">
                                                         <label style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #6c757d; margin-bottom: 6px; display: block;">Description</label>
                                                         <textarea class="summernote-editor" name="descriptions[]" rows="4" required></textarea>

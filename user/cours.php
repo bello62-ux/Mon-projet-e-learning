@@ -1,3 +1,4 @@
+
 <?php
 // Définir le titre de la page
 $page_title = "Nos Cours - Plateforme Éducative";
@@ -8,93 +9,66 @@ require_once '../layout/header.php';
 // Vérifier si l'utilisateur est connecté
 $is_logged_in = isset($_SESSION['user_id']);
 
-// ========== DONNÉES DES COURS ==========
-$cours = [
-    // CM2
-    [
-        'niveau'     => 'cm2',
-        'matiere'    => 'Français',
-        'titre'      => 'Grammaire et conjugaison',
-        'duree'      => '40 minutes',
-        'description'=> '📝 Maîtrisez les bases de la grammaire • 📚 Apprenez à conjuguer les verbes',
-        'image'      => '../media/images/livre.jpg',
-        'lien'       => 'details-cours.php?id=1&niveau=cm2&matiere=francais'
-    ],
-    [
-        'niveau'     => 'cm2',
-        'matiere'    => 'Anglais',
-        'titre'      => 'Vocabulaire de base',
-        'duree'      => '35 minutes',
-        'description'=> '🗣️ Apprenez vos premiers mots • 🌍 Découvrez une nouvelle langue',
-        'image'      => '../media/images/anglais.jpg',
-        'lien'       => 'details-cours.php?id=2&niveau=cm2&matiere=anglais'
-    ],
-    [
-        'niveau'     => 'cm2',
-        'matiere'    => 'Mathématiques',
-        'titre'      => 'Introduction aux fractions',
-        'duree'      => '45 minutes',
-        'description'=> '🧮 Comprendre les parts et proportions • 📐 Maîtrisez les opérations de base',
-        'image'      => '../media/images/mathématique.jpg',
-        'lien'       => 'details-cours.php?id=3&niveau=cm2&matiere=mathematiques'
-    ],
-    // 3ème
-    [
-        'niveau'     => '3eme',
-        'matiere'    => 'Mathématiques',
-        'titre'      => 'Théorème de Pythagore',
-        'duree'      => '1 heure',
-        'description'=> '📐 Découvrez ce théorème essentiel • 📏 Résolvez des problèmes géométriques',
-        'image'      => '../media/images/math3.jpg.avif',
-        'lien'       => 'details-cours.php?id=4&niveau=3eme&matiere=mathematiques'
-    ],
-    [
-        'niveau'     => '3eme',
-        'matiere'    => 'SVT',
-        'titre'      => 'La reproduction humaine',
-        'duree'      => '50 minutes',
-        'description'=> '🔬 Comprenez le corps humain • 🧬 Étudiez les mécanismes biologiques',
-        'image'      => '../media/images/svt.jpg',
-        'lien'       => 'details-cours.php?id=5&niveau=3eme&matiere=svt'
-    ],
-    [
-        'niveau'     => '3eme',
-        'matiere'    => 'Physique',
-        'titre'      => 'Électricité et circuits',
-        'duree'      => '55 minutes',
-        'description'=> '⚡ Découvrez les circuits électriques • 🔌 Comprenez les lois fondamentales',
-        'image'      => '../media/images/physique.jpg',
-        'lien'       => 'details-cours.php?id=6&niveau=3eme&matiere=physique'
-    ],
-    // Terminale
-    [
-        'niveau'     => 'terminale',
-        'matiere'    => 'Mathématiques',
-        'titre'      => 'Fonctions exponentielles',
-        'duree'      => '1h30',
-        'description'=> '📈 Étudiez la croissance exponentielle • 🧮 Maîtrisez les fonctions avancées',
-        'image'      => '../media/images/mathT.jpg',
-        'lien'       => 'details-cours.php?id=7&niveau=terminale&matiere=mathematiques'
-    ],
-    [
-        'niveau'     => 'terminale',
-        'matiere'    => 'SVT',
-        'titre'      => 'Génétique et évolution',
-        'duree'      => '1h15',
-        'description'=> '🧬 Explorez l\'ADN et l\'hérédité • 🐒 Comprenez les mécanismes de l\'évolution',
-        'image'      => '../media/images/svt.jpg',
-        'lien'       => 'details-cours.php?id=8&niveau=terminale&matiere=svt'
-    ],
-    [
-        'niveau'     => 'terminale',
-        'matiere'    => 'Physique',
-        'titre'      => 'Mécanique quantique',
-        'duree'      => '1h20',
-        'description'=> '⚛️ Initiation à la physique moderne • 🔭 Découvrez l\'infiniment petit',
-        'image'      => '../media/images/physique.jpg',
-        'lien'       => 'details-cours.php?id=9&niveau=terminale&matiere=physique'
-    ]
-];
+// Connexion à la BDD
+require_once '../config/db.php';
+
+// ========== RÉCUPÉRER LES COURS AVEC LEUR IMAGE ==========
+$sql_lessons = "SELECT l.*, c.name as niveau_name, s.name as matiere_name
+                FROM Lessons l
+                JOIN Classroom c ON l.classroom_id = c.classroom_id
+                JOIN Subject s ON l.subject_id = s.subject_id
+                WHERE l.is_active = 1
+                ORDER BY l.lessons_id";
+$result_lessons = $conn->query($sql_lessons);
+
+$tous_les_cours = [];
+if ($result_lessons && $result_lessons->num_rows > 0) {
+    while ($row = $result_lessons->fetch_assoc()) {
+        
+        // Récupérer l'image depuis Media
+        // L'image peut être liée à : lessons_id OU chapter_id
+        $sql_image = "SELECT media_path FROM Media 
+                      WHERE media_type = 'image' 
+                      AND (lessons_id = " . $row['lessons_id'] . " 
+                           OR chapter_id IN (SELECT chapter_id FROM Chapters WHERE lessons_id = " . $row['lessons_id'] . "))
+                      LIMIT 1";
+        $result_image = $conn->query($sql_image);
+        $image_row = $result_image->fetch_assoc();
+        
+        // Déterminer l'image
+        $image_path = '../media/images/default-course.jpg';
+        if ($image_row && !empty($image_row['media_path'])) {
+            $media_path = $image_row['media_path'];
+            // Corriger le chemin
+            if (strpos($media_path, 'uploads/') === 0) {
+                $image_path = '../' . $media_path;
+            } elseif (strpos($media_path, '../') !== 0 && strpos($media_path, 'media/') !== 0) {
+                $image_path = '../' . $media_path;
+            } else {
+                $image_path = $media_path;
+            }
+        }
+        
+        $tous_les_cours[] = [
+            'niveau'     => strtolower($row['niveau_name']),
+            'niveau_aff' => strtoupper($row['niveau_name']),
+            'matiere'    => $row['matiere_name'],
+            'titre'      => $row['title'],
+            'duree'      => $row['time'] ? $row['time'] . ' minutes' : 'Durée variable',
+            'description'=> $row['description'],
+            'image'      => $image_path,
+            'lien'       => 'details-cours.php?lessons_id=' . $row['lessons_id']
+        ];
+    }
+}
+
+// Récupérer les niveaux uniques pour les filtres
+$niveaux_filtres = [];
+foreach ($tous_les_cours as $c) {
+    if (!in_array($c['niveau'], $niveaux_filtres)) {
+        $niveaux_filtres[] = $c['niveau'];
+    }
+}
 ?>
 
 <style>
@@ -154,6 +128,7 @@ $cours = [
         font-size: 1rem;
         font-weight: 600;
         color: var(--dark);
+        text-transform: uppercase;
     }
     
     /* Grille des cartes */
@@ -237,13 +212,12 @@ $cours = [
         border-radius: 2rem;
     }
     
-    .cours-card h2 {
+    .cours-card h3 {
         font-size: 1.4rem;
         font-weight: 700;
         color: var(--dark);
         margin: 0.5rem 1.5rem 0.8rem;
         line-height: 1.3;
-        letter-spacing: -0.2px;
     }
     
     .cours-card .description {
@@ -265,116 +239,49 @@ $cours = [
         font-size: 0.9rem;
         transition: all 0.3s;
         cursor: pointer;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
     
     .cours-card button:hover {
         background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
         transform: translateY(-2px);
-        box-shadow: 0 6px 14px rgba(46,204,113,0.3);
     }
     
     .cours-card.hidden {
         display: none;
     }
     
-    /* Responsive */
-    @media (max-width: 992px) {
-        .cours-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-        .cours-card .meta {
-            margin: 1rem 1rem 0.5rem;
-        }
-        .cours-card h2,
-        .cours-card .description {
-            margin-left: 1rem;
-            margin-right: 1rem;
-        }
-        .cours-card button {
-            width: calc(100% - 2rem);
-        }
+    .empty-message {
+        text-align: center;
+        padding: 3rem;
+        background: white;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-sm);
     }
     
+    .empty-message i {
+        font-size: 3rem;
+        color: #cbd5e1;
+    }
+    
+    .empty-message p {
+        color: #94a3b8;
+        margin-top: 1rem;
+    }
+    
+    /* Responsive */
     @media (max-width: 768px) {
+        .cours-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
         .filters-container {
             gap: 0.75rem;
-            margin: 1.5rem 0 2rem;
         }
         .filter-btn {
             padding: 0.5rem 1.2rem;
         }
         .filter-btn h2 {
             font-size: 0.85rem;
-        }
-        .cours-grid {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            padding: 0.5rem;
-        }
-        .cours-card .meta {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.5rem;
-            margin: 1rem 1rem 0;
-        }
-        .cours-card h2,
-        .cours-card .description {
-            margin-left: 1rem;
-            margin-right: 1rem;
-        }
-        .cours-card button {
-            width: calc(100% - 2rem);
-        }
-        h1 {
-            font-size: 2.2rem !important;
-        }
-    }
-    
-    @media (max-width: 576px) {
-        .filter-btn {
-            padding: 0.4rem 1rem;
-        }
-        .filter-btn h2 {
-            font-size: 0.75rem;
-        }
-        .cours-card img {
-            height: 160px;
-        }
-        .cours-card h2 {
-            font-size: 1.2rem;
-        }
-        .cours-card button {
-            padding: 0.7rem;
-            font-size: 0.85rem;
-        }
-        h1 {
-            font-size: 1.8rem !important;
-        }
-    }
-    
-    @media (max-width: 480px) {
-        .cours-card {
-            border-radius: 1.2rem;
-        }
-        .cours-card img {
-            height: 140px;
-        }
-        .cours-card h2 {
-            font-size: 1.1rem;
-            margin: 0.5rem 1rem 0.5rem;
-        }
-        .cours-card .description {
-            font-size: 0.85rem;
-            margin: 0 1rem 1rem;
-        }
-        .cours-card button {
-            padding: 0.6rem;
-            font-size: 0.8rem;
-        }
-        h1 {
-            font-size: 1.6rem !important;
         }
     }
 </style>
@@ -387,37 +294,37 @@ $cours = [
         <div class="filter-btn active" data-level="all">
             <h2>Tous</h2>
         </div>
-        <div class="filter-btn" data-level="cm2">
-            <h2>CM2</h2>
-        </div>
-        <div class="filter-btn" data-level="3eme">
-            <h2>3ème</h2>
-        </div>
-        <div class="filter-btn" data-level="terminale">
-            <h2>Terminale</h2>
-        </div>
+        <?php foreach ($niveaux_filtres as $niveau_filtre): ?>
+            <div class="filter-btn" data-level="<?php echo $niveau_filtre; ?>">
+                <h2><?php echo strtoupper($niveau_filtre); ?></h2>
+            </div>
+        <?php endforeach; ?>
     </div>
 
     <!-- Grille des cours -->
     <div class="cours-grid">
-        <?php foreach ($cours as $cours_item): ?>
-            <div class="cours-card" data-level="<?php echo $cours_item['niveau']; ?>">
-                <div>
+        <?php if (count($tous_les_cours) > 0): ?>
+            <?php foreach ($tous_les_cours as $cours_item): ?>
+                <div class="cours-card" data-level="<?php echo $cours_item['niveau']; ?>">
                     <img src="<?php echo $cours_item['image']; ?>" alt="<?php echo $cours_item['matiere']; ?>">
+                    <div class="meta">
+                        <span><?php echo $cours_item['matiere']; ?> • <?php echo $cours_item['niveau_aff']; ?></span>
+                        <span>⏱️ <?php echo $cours_item['duree']; ?></span>
+                    </div>
+                    <h3><?php echo $cours_item['titre']; ?></h3>
+                    <div class="description"><?php echo $cours_item['description']; ?></div>
+                    <button onclick="window.location.href='<?php echo $cours_item['lien']; ?>'">
+                        Voir les détails →
+                    </button>
                 </div>
-                <div class="meta">
-                    <span><?php echo $cours_item['matiere']; ?> • <?php echo strtoupper($cours_item['niveau']); ?></span>
-                    <span>⏱️ <?php echo $cours_item['duree']; ?></span>
-                </div>
-                <h2><?php echo $cours_item['titre']; ?></h2>
-                <div class="description">
-                    <?php echo $cours_item['description']; ?>
-                </div>
-                <button onclick="window.location.href='<?php echo $cours_item['lien']; ?>'">
-                    Voir les détails →
-                </button>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="empty-message" style="grid-column: 1/-1;">
+                <i class="bi bi-inbox"></i>
+                <p>Aucun cours disponible pour le moment.</p>
+                <p style="font-size: 0.85rem;">Les administrateurs vont bientôt ajouter des cours.</p>
             </div>
-        <?php endforeach; ?>
+        <?php endif; ?>
     </div>
 </div>
 

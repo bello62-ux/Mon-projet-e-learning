@@ -1,4 +1,3 @@
-
 <?php
 include('../config/db.php');
 session_start();
@@ -26,7 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT user_id, first_name, last_name, email, password, is_active, is_admin FROM Users WHERE email = ? AND is_active = 1";
+    // NE PAS filtrer sur is_active = 1 ici pour pouvoir détecter les comptes bloqués
+    $sql = "SELECT user_id, first_name, last_name, email, password, is_active, is_admin FROM Users WHERE email = ?";
     $stmt = $conn->prepare($sql);
     
     if ($stmt === false) {
@@ -39,6 +39,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
 
+    // Cas 1 : L'utilisateur n'existe pas du tout (compte supprimé)
+    if (!$user) {
+        $_SESSION['connexion_error'] = "Compte supprimé";
+        header("Location: ../authentification/login.php?error=deleted");
+        exit();
+    }
+
+    // Cas 2 : Le compte existe mais est bloqué (is_active = 0)
+    if ($user && $user['is_active'] == 0) {
+        $_SESSION['connexion_error'] = "Compte bloqué";
+        header("Location: ../authentification/login.php?error=blocked");
+        exit();
+    }
+
+    // Cas 3 : Vérification du mot de passe pour compte actif
     if ($user && password_verify($password, $user['password'])) {
         // Connexion réussie - créer la session utilisateur
         $_SESSION['user_id'] = $user['user_id'];
@@ -66,13 +81,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
         
     } else {
+        // Cas 4 : Mot de passe incorrect
         $connexion_error = "Email ou mot de passe incorrect!";
         $_SESSION['connexion_error'] = $connexion_error;
         
         $stmt->close();
         $conn->close();
         
-        header("Location: ../authentification/login.php");
+        header("Location: ../authentification/login.php?error=invalid");
         exit();
     }
 }

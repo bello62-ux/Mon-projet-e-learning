@@ -16,7 +16,7 @@ $chapter_id = $_GET['chapter_id'];
 // Récupérer les infos du chapitre
 $sql = "SELECT c.*, m.media_path, l.title as lesson_title
         FROM Chapters c
-        LEFT JOIN Media m ON c.chapter_id = m.chapitre_id
+        LEFT JOIN Media m ON c.chapter_id = m.chapter_id
         LEFT JOIN Lessons l ON c.lessons_id = l.lessons_id
         WHERE c.chapter_id = ?";
 $stmt = $conn->prepare($sql);

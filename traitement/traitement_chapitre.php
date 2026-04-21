@@ -39,7 +39,7 @@ if(isset($_POST["ajouter"])) {
                 $media_path = "uploads/chapitres/" . $file_name;
                 
                 // Insérer dans la table Media
-                $sql_media = "INSERT INTO Media (chapitre_id, file_name, media_type, media_path) 
+                $sql_media = "INSERT INTO Media (chapter_id, file_name, media_type, media_path) 
                               VALUES (?, ?, ?, ?)";
                 $stmt_media = $conn->prepare($sql_media);
                 $media_type = 'image';

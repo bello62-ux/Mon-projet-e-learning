@@ -25,8 +25,8 @@ if(isset($_POST["modifier"])) {
         if(move_uploaded_file($_FILES['media']['tmp_name'], $target_file)) {
             $media_path = "uploads/chapitres/" . $file_name;
             
-            // ✅ Vérifier si un média existe déjà pour ce chapitre
-            $sql_check = "SELECT media_id, media_path FROM Media WHERE chapitre_id = ?";
+            // ✅ Vérifier si un média existe déjà pour ce CHAPITRE
+            $sql_check = "SELECT media_id, media_path FROM Media WHERE chapter_id = ?";
             $stmt_check = $conn->prepare($sql_check);
             $stmt_check->bind_param("i", $chapter_id);
             $stmt_check->execute();
@@ -34,11 +34,11 @@ if(isset($_POST["modifier"])) {
             $existing_media = $result_check->fetch_assoc();
             
             if($existing_media) {
-                // ✅ Mettre à jour l'existant au lieu d'insérer
-                $sql_media = "UPDATE Media SET file_name=?, media_path=?, media_type=? WHERE media_id=?";
+                // ✅ Mettre à jour l'existant
+                $sql_media = "UPDATE Media SET file_name=?, media_path=?, media_type=?, lessons_id=? WHERE media_id=?";
                 $stmt_media = $conn->prepare($sql_media);
                 $media_type = 'image';
-                $stmt_media->bind_param("sssi", $file_name, $media_path, $media_type, $existing_media['media_id']);
+                $stmt_media->bind_param("sssii", $file_name, $media_path, $media_type, $lessons_id, $existing_media['media_id']);
                 $stmt_media->execute();
                 $stmt_media->close();
                 
@@ -50,12 +50,12 @@ if(isset($_POST["modifier"])) {
                     }
                 }
             } else {
-                // ✅ Insérer un nouveau média
-                $sql_media = "INSERT INTO Media (chapitre_id, file_name, media_type, media_path) 
-                              VALUES (?, ?, ?, ?)";
+                // ✅ Insérer un nouveau média (avec lessons_id obligatoire)
+                $sql_media = "INSERT INTO Media (chapter_id, lessons_id, file_name, media_type, media_path) 
+                              VALUES (?, ?, ?, ?, ?)";
                 $stmt_media = $conn->prepare($sql_media);
                 $media_type = 'image';
-                $stmt_media->bind_param("isss", $chapter_id, $file_name, $media_type, $media_path);
+                $stmt_media->bind_param("iisss", $chapter_id, $lessons_id, $file_name, $media_type, $media_path);
                 $stmt_media->execute();
                 $stmt_media->close();
             }

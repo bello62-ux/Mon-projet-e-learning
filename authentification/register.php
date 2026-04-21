@@ -2,19 +2,15 @@
 session_start();
 include('../config/db.php');
 
-// Récupérer les messages de session
 $inscription_error = $_SESSION['inscription_error'] ?? "";
 $inscription_success = $_SESSION['inscription_success'] ?? false;
 
-// Récupérer les anciennes données POST
 $old_input = $_SESSION['post_data'] ?? [];
 
-// Effacer les données après les avoir récupérées
 unset($_SESSION['inscription_error']);
 unset($_SESSION['inscription_success']);
 unset($_SESSION['post_data']);
 
-// Récupérer les classes
 $classes = [];
 $class_result = $conn->query("SELECT classroom_id, name FROM Classroom ORDER BY name");
 if ($class_result) {
