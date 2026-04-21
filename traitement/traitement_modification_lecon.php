@@ -52,7 +52,7 @@ if(isset($_POST['modifier'])){
                 }
             } else {
                 // ✅ Insérer un nouveau média
-                $sql_media = "INSERT INTO Media (lecon_id, file_name, media_type, media_path) 
+                $sql_media = "INSERT INTO Media (lessons_id, file_name, media_type, media_path) 
                               VALUES (?, ?, ?, ?)";
                 $stmt_media = $conn->prepare($sql_media);
                 $media_type = 'image';

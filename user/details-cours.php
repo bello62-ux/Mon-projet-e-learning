@@ -8,243 +8,95 @@ require_once '../layout/header.php';
 // Vérifier si l'utilisateur est connecté
 $is_logged_in = isset($_SESSION['user_id']);
 
-// Récupérer l'ID du cours depuis l'URL
-$cours_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-$niveau = isset($_GET['niveau']) ? $_GET['niveau'] : '';
-$matiere = isset($_GET['matiere']) ? $_GET['matiere'] : '';
+// Connexion à la BDD
+require_once '../config/db.php';
 
-// Définir les informations des cours selon l'ID
-$cours_info = [
-    // COURS CM2
-    1 => [
-        'titre' => 'Français CM2 - Grammaire et conjugaison',
-        'description' => 'Maîtrisez les bases de la grammaire française et apprenez à conjuguer les verbes correctement.',
-        'niveau' => 'CM2',
-        'matiere' => 'Français',
-        'duree' => '40 minutes',
-        'chapitres' => 4,
-        'video' => false,
-        'image' => '../media/images/livre.jpg',
-        'url' => '../user/cours/cours-cm2/francais.php',
-        'objectifs' => [
-            'Comprendre les règles de base de la grammaire',
-            'Maîtriser la conjugaison des verbes au présent',
-            'Identifier les différentes catégories grammaticales',
-            'Construire des phrases correctes'
-        ],
-        'programme' => [
-            'Chapitre 1 : Introduction à la grammaire',
-            'Chapitre 2 : Les adjectifs qualificatifs',
-            'Chapitre 3 : Le futur simple',
-            'Chapitre 4 : Le passé composé'
-        ]
-    ],
-    2 => [
-        'titre' => 'Anglais CM2 - Vocabulaire de base',
-        'description' => 'Apprenez les bases de l\'anglais avec ce cours interactif : salutations, couleurs, famille et objets du quotidien.',
-        'niveau' => 'CM2',
-        'matiere' => 'Anglais',
-        'duree' => '35 minutes',
-        'chapitres' => 3,
-        'video' => false,
-        'image' => '../media/images/anglais.jpg',
-        'url' => '../user/cours/cours-cm2/anglais.php',
-        'objectifs' => [
-            'Maîtriser les salutations de base',
-            'Apprendre les couleurs en anglais',
-            'Connaître le vocabulaire de la famille',
-            'Identifier les objets de la classe'
-        ],
-        'programme' => [
-            'Chapitre 1 : Vocabulaire de base',
-            'Chapitre 2 : Simple present',
-            'Chapitre 3 : Structures de Communication'
-        ]
-    ],
-    3 => [
-        'titre' => 'Mathématiques CM2 - Introduction aux fractions',
-        'description' => 'Découvrez les fractions et apprenez à les manipuler. Comprenez les parts, proportions et opérations de base.',
-        'niveau' => 'CM2',
-        'matiere' => 'Mathématiques',
-        'duree' => '45 minutes',
-        'chapitres' => 4,
-        'video' => false,
-        'image' => '../media/images/mathématique.jpg',
-        'url' => '../user/cours/cours-cm2/math.php',
-        'objectifs' => [
-            'Comprendre la notion de fraction',
-            'Savoir comparer des fractions',
-            'Additionner et soustraire des fractions simples',
-            'Convertir fractions en nombres décimaux'
-        ],
-        'programme' => [
-            'Chapitre 1 : Les nombres jusqu\'à 999 999',
-            'Chapitre 2 : Calcul avec (+ - x ÷)',
-            'Chapitre 3 : Fractions et nombres décimaux',
-            'Chapitre 4 : Géométrie'
-        ]
-    ],
-    // COURS 3ÈME
-    4 => [
-        'titre' => 'Mathématiques 3ème - Théorème de Pythagore',
-        'description' => 'Maîtrisez le théorème de Pythagore et ses applications pour résoudre des problèmes géométriques.',
-        'niveau' => '3ème',
-        'matiere' => 'Mathématiques',
-        'duree' => '1 heure',
-        'chapitres' => 6,
-        'video' => true,
-        'image' => '../media/images/math3.jpg.avif',
-        'url' => '../user/cours/cours-3eme/math.php',
-        'objectifs' => [
-            'Comprendre et appliquer le théorème de Pythagore',
-            'Calculer des longueurs dans un triangle rectangle',
-            'Reconnaître un triangle rectangle',
-            'Résoudre des problèmes concrets'
-        ],
-        'programme' => [
-            'Chapitre 1 : Calcul Numérique',
-            'Chapitre 2 : Calcul Littéral',
-            'Chapitre 3 : Équations et Inéquations',
-            'Chapitre 4 : Fonctions',
-            'Chapitre 5 : Géométrie',
-            'Chapitre 6 : Statistiques'
-        ]
-    ],
-    5 => [
-        'titre' => 'SVT 3ème - La reproduction humaine',
-        'description' => 'Découvrez le fonctionnement du corps humain et les mécanismes de la reproduction.',
-        'niveau' => '3ème',
-        'matiere' => 'SVT',
-        'duree' => '50 minutes',
-        'chapitres' => 6,
-        'video' => true,
-        'image' => '../media/images/svt.jpg',
-        'url' => '../user/cours/cours-3eme/svt.php',
-        'objectifs' => [
-            'Comprendre l\'anatomie du système reproducteur',
-            'Étudier le processus de fécondation',
-            'Comprendre le développement de l\'embryon',
-            'Connaître les mécanismes biologiques'
-        ],
-        'programme' => [
-            'Chapitre 1 : Génétique',
-            'Chapitre 2 : Évolution',
-            'Chapitre 3 : Reproduction',
-            'Chapitre 4 : Micro-organismes',
-            'Chapitre 5 : Risques infectieux',
-            'Chapitre 6 : Responsabilité humaine'
-        ]
-    ],
-    6 => [
-        'titre' => 'Physique 3ème - Électricité et circuits',
-        'description' => 'Initiez-vous aux circuits électriques, comprenez les lois fondamentales de l\'électricité.',
-        'niveau' => '3ème',
-        'matiere' => 'Physique',
-        'duree' => '55 minutes',
-        'chapitres' => 6,
-        'video' => true,
-        'image' => '../media/images/physique.jpg',
-        'url' => '../user/cours/cours-3eme/physique.php',
-        'objectifs' => [
-            'Comprendre le fonctionnement d\'un circuit électrique',
-            'Maîtriser les lois de l\'électricité',
-            'Calculer l\'intensité, la tension et la résistance',
-            'Savoir monter un circuit'
-        ],
-        'programme' => [
-            'Chapitre 1 : Mouvement',
-            'Chapitre 2 : Énergie',
-            'Chapitre 3 : Électricité',
-            'Chapitre 4 : Lumière',
-            'Chapitre 5 : Sons',
-            'Chapitre 6 : Chimie'
-        ]
-    ],
-    // COURS TERMINALE
-    7 => [
-        'titre' => 'Mathématiques Terminale - Fonctions exponentielles',
-        'description' => 'Étudiez la croissance exponentielle, maîtrisez les fonctions avancées pour réussir le bac.',
-        'niveau' => 'Terminale',
-        'matiere' => 'Mathématiques',
-        'duree' => '1h30',
-        'chapitres' => 6,
-        'video' => true,
-        'image' => '../media/images/mathT.jpg',
-        'url' => '../user/cours/cours-terminale/math.php',
-        'objectifs' => [
-            'Comprendre la fonction exponentielle',
-            'Étudier les propriétés et limites',
-            'Résoudre des équations exponentielles',
-            'Appliquer aux problèmes concrets'
-        ],
-        'programme' => [
-            'Chapitre 1 : Suites numériques',
-            'Chapitre 2 : Fonctions',
-            'Chapitre 3 : Géométrie dans l\'espace',
-            'Chapitre 4 : Nombres complexes',
-            'Chapitre 5 : Probabilités',
-            'Chapitre 6 : Algorithmique'
-        ]
-    ],
-    8 => [
-        'titre' => 'SVT Terminale - Génétique et évolution',
-        'description' => 'Explorez l\'ADN, l\'hérédité et les mécanismes de l\'évolution des espèces.',
-        'niveau' => 'Terminale',
-        'matiere' => 'SVT',
-        'duree' => '1h15',
-        'chapitres' => 6,
-        'video' => true,
-        'image' => '../media/images/svt.jpg',
-        'url' => '../user/cours/cours-terminale/svt.php',
-        'objectifs' => [
-            'Comprendre la structure de l\'ADN',
-            'Étudier les mécanismes évolutifs',
-            'Analyser l\'arbre phylogénétique',
-            'Comprendre la sélection naturelle'
-        ],
-        'programme' => [
-            'Chapitre 1 : Génétique et évolution',
-            'Chapitre 2 : Écologie',
-            'Chapitre 3 : Neurone et synapse',
-            'Chapitre 4 : Mécanismes immunitaires',
-            'Chapitre 5 : Glycémie et diabète',
-            'Chapitre 6 : Géologie'
-        ]
-    ],
-    9 => [
-        'titre' => 'Physique Terminale - Mécanique quantique',
-        'description' => 'Initiez-vous à la physique moderne, découvrez l\'infiniment petit et la dualité onde-particule.',
-        'niveau' => 'Terminale',
-        'matiere' => 'Physique',
-        'duree' => '1h20',
-        'chapitres' => 6,
-        'video' => true,
-        'image' => '../media/images/physique.jpg',
-        'url' => '../user/cours/cours-terminale/physique.php',
-        'objectifs' => [
-            'Comprendre la dualité onde-particule',
-            'Étudier le modèle atomique',
-            'Découvrir la radioactivité',
-            'Explorer la mécanique quantique'
-        ],
-        'programme' => [
-            'Chapitre 1 : Mécanique',
-            'Chapitre 2 : Ondes et signaux',
-            'Chapitre 3 : Électromagnétisme',
-            'Chapitre 4 : Physique quantique',
-            'Chapitre 5 : Physique nucléaire',
-            'Chapitre 6 : Thermodynamique'
-        ]
-    ]
-];
+// Récupérer l'ID depuis l'URL
+$lessons_id = isset($_GET['lessons_id']) ? (int)$_GET['lessons_id'] : 0;
 
-// Vérifier si le cours existe
-if (!isset($cours_info[$cours_id])) {
+// Si pas d'ID, rediriger
+if ($lessons_id == 0) {
     header('Location: cours.php');
     exit();
 }
 
-$cours = $cours_info[$cours_id];
+// Récupérer la leçon depuis la BDD
+$sql_lesson = "SELECT l.*, c.name as niveau_name, s.name as matiere_name 
+               FROM Lessons l
+               JOIN Classroom c ON l.classroom_id = c.classroom_id
+               JOIN Subject s ON l.subject_id = s.subject_id
+               WHERE l.lessons_id = $lessons_id AND l.is_active = 1";
+$result_lesson = $conn->query($sql_lesson);
+
+if ($result_lesson->num_rows == 0) {
+    header('Location: cours.php');
+    exit();
+}
+
+$lesson_bdd = $result_lesson->fetch_assoc();
+
+// Récupérer les chapitres avec numérotation
+$sql_chapitres = "SELECT * FROM Chapters 
+                  WHERE lessons_id = $lessons_id 
+                  AND is_active = 1 
+                  ORDER BY chapter_id";
+$result_chapitres = $conn->query($sql_chapitres);
+$programme_bdd = [];
+$chapitre_numero = 1;
+while ($chapitre = $result_chapitres->fetch_assoc()) {
+    $programme_bdd[] = 'Chapitre ' . $chapitre_numero . ' : ' . $chapitre['title'];
+    $chapitre_numero++;
+}
+
+// Récupérer l'image depuis Media
+$image_path = '../media/images/default-course.jpg';
+$sql_image = "SELECT media_path FROM Media 
+              WHERE media_type = 'image' 
+              AND (lessons_id = $lessons_id 
+                   OR chapter_id IN (SELECT chapter_id FROM Chapters WHERE lessons_id = $lessons_id))
+              LIMIT 1";
+$result_image = $conn->query($sql_image);
+if ($result_image && $result_image->num_rows > 0) {
+    $image_row = $result_image->fetch_assoc();
+    if (!empty($image_row['media_path'])) {
+        $media_path = $image_row['media_path'];
+        if (strpos($media_path, 'uploads/') === 0) {
+            $image_path = '../' . $media_path;
+        } elseif (strpos($media_path, '../') !== 0 && strpos($media_path, 'media/') !== 0) {
+            $image_path = '../' . $media_path;
+        } else {
+            $image_path = $media_path;
+        }
+    }
+}
+
+// Récupérer la première section
+$first_section_id = 0;
+$sql_first_section = "SELECT s.section_id 
+                      FROM Section s
+                      JOIN Chapters c ON s.chapter_id = c.chapter_id
+                      WHERE c.lessons_id = $lessons_id AND s.is_active = 1 
+                      ORDER BY s.section_id LIMIT 1";
+$result_first = $conn->query($sql_first_section);
+if ($result_first && $result_first->num_rows > 0) {
+    $first_section = $result_first->fetch_assoc();
+    $first_section_id = $first_section['section_id'];
+}
+
+// Construction du tableau cours
+$cours = [
+    'titre' => $lesson_bdd['title'],
+    'description' => $lesson_bdd['description'],
+    'niveau' => $lesson_bdd['niveau_name'],
+    'matiere' => $lesson_bdd['matiere_name'],
+    'duree' => $lesson_bdd['time'] ? $lesson_bdd['time'] . ' minutes' : 'Durée variable',
+    'chapitres' => count($programme_bdd),
+    'video' => false,
+    'image' => $image_path,
+    'url' => '#',
+    'lessons_id' => $lessons_id,
+    'programme' => $programme_bdd
+];
 ?>
 
 <link rel="stylesheet" href="../asset/css/details-cours.css">
@@ -265,27 +117,25 @@ $cours = $cours_info[$cours_id];
                 <?php echo $cours['video'] ? 'Cours vidéo inclus' : 'Cours écrit'; ?>
             </div>
         </div>
-        <p style="margin-top: 20px; font-size: 1.1rem;"><?php echo $cours['description']; ?></p>
+        
     </div>
     
     <div class="course-detail-grid">
         <div class="course-info-card">
             <h3>🎯 Objectifs pédagogiques</h3>
-            <ul class="objectives-list">
-                <?php foreach ($cours['objectifs'] as $objectif): ?>
-                    <li><?php echo $objectif; ?></li>
-                <?php endforeach; ?>
-            </ul>
+            <p style="margin-top: 20px; font-size: 1.1rem;"><?php echo $cours['description']; ?></p>
         </div>
         
         <div class="course-sidebar">
             <img src="<?php echo $cours['image']; ?>" alt="<?php echo $cours['titre']; ?>" class="course-image">
             
             <?php if ($is_logged_in): ?>
-                <!-- Utilisateur connecté : bouton actif -->
-                <a href="<?php echo $cours['url']; ?>" class="btn-start">▶ Commencer le cours</a>
+                <?php if ($cours['lessons_id'] > 0 && $first_section_id > 0): ?>
+                    <a href="lire-cours.php?lessons_id=<?php echo $cours['lessons_id']; ?>&section_id=<?php echo $first_section_id; ?>" class="btn-start">▶ Commencer le cours</a>
+                <?php else: ?>
+                    <a href="#" class="btn-start">▶ Commencer le cours</a>
+                <?php endif; ?>
             <?php else: ?>
-                <!-- Utilisateur non connecté : message avec lien vers connexion -->
                 <div class="login-required">
                     <div class="login-message">
                         <i class="fas fa-lock"></i>
@@ -296,7 +146,7 @@ $cours = $cours_info[$cours_id];
                 </div>
             <?php endif; ?>
             
-            <a href="../ACCUEIL/cours.php" class="btn-start btn-back">← Retour à la liste des cours</a>
+            <a href="cours.php" class="btn-start btn-back">← Retour à la liste des cours</a>
         </div>
     </div>
     
@@ -311,7 +161,6 @@ $cours = $cours_info[$cours_id];
 </div>
 
 <style>
-    /* Styles pour le message de connexion requis */
     .login-required {
         background: #f8f9fa;
         border-radius: 12px;

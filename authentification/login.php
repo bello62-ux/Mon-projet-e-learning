@@ -1,10 +1,5 @@
 <?php
-// Démarrer la session au tout début
 session_start();
-
-// Activer l'affichage des erreurs pour le debug (à enlever en production)
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 // Récupérer les messages de la session
 $connexion_success = isset($_SESSION['connexion_success']) ? $_SESSION['connexion_success'] : false;
@@ -23,6 +18,24 @@ unset($_SESSION['connexion_error']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../asset/css/login.css">
     <title>Connexion - Plateforme Éducative</title>
+    <style>
+        .alert-error {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #ef4444;
+        }
+        .alert-warning {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #f59e0b;
+        }
+    </style>
 </head>
 <body>
     <?php if ($connexion_success): ?>
@@ -58,7 +71,26 @@ unset($_SESSION['connexion_error']);
                 <div class="alert alert-error"><?php echo htmlspecialchars($connexion_error); ?></div>
             <?php endif; ?>
             
-            <!-- Formulaire qui pointe vers login_process.php -->
+            <?php if(isset($_GET['error'])): ?>
+                <?php if($_GET['error'] == 'blocked'): ?>
+                    <div class="alert alert-error">
+                        <strong>Compte bloqué !</strong> Votre compte a été bloqué par un administrateur.Contactez nous au <a href="https://wa.me/2290162130248" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i>ici </a>pour connaitre les raisons
+                    </div>
+                <?php elseif($_GET['error'] == 'deleted'): ?>
+                    <div class="alert alert-error">
+                        <strong>Compte supprimé !</strong> Votre compte a été supprimé.Contactez nous au <a href="https://wa.me/2290162130248" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i>ici </a>pour connaitre les raisons
+                    </div>
+                <?php elseif($_GET['error'] == 'invalid'): ?>
+                    <div class="alert alert-error">
+                        <strong>Erreur de connexion</strong> Mot de passe incorrect.
+                    </div>
+                <?php elseif($_GET['error'] == 'notfound'): ?>
+                    <div class="alert alert-error">
+                        <strong>Compte introuvable</strong> Aucun compte associé à cet email.
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+            
             <form method="POST" action="../process/login_process.php" class="login-form">
                 <div class="form-group">
                     <label for="email">Email</label>
@@ -103,7 +135,6 @@ unset($_SESSION['connexion_error']);
             passwordInput.setAttribute('type', type);
         }
 
-        // Ajouter la classe 'filled' aux inputs quand ils ont du contenu
         document.querySelectorAll('input').forEach(input => {
             input.addEventListener('input', function() {
                 if (this.value) {
@@ -114,7 +145,6 @@ unset($_SESSION['connexion_error']);
             });
         });
 
-        // Debug
         console.log("Page login.php chargée");
         <?php if ($connexion_success): ?>
         console.log("Succès de connexion détecté");

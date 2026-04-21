@@ -84,7 +84,7 @@ require_once '../../config/db.php';
                                 <?php
                                 $sql = "SELECT c.*, m.media_path, m.file_name as image_name, l.title as lesson_title
                                         FROM Chapters c
-                                        LEFT JOIN Media m ON c.chapter_id = m.chapitre_id
+                                        LEFT JOIN Media m ON c.chapter_id = m.chapter_id
                                         LEFT JOIN Lessons l ON c.lessons_id = l.lessons_id
                                         ORDER BY c.chapter_id DESC";
                                 $resultat = $conn->query($sql);

@@ -45,7 +45,7 @@ $admin_email = $_SESSION['admin_email'] ?? "admin@ecole.fr";
                     </button>
                     
                     <div class="ms-auto d-flex align-items-center">
-                        <!-- Search uniquement -->
+                        
                         <div class="input-group" style="width: 250px;">
                             <span class="input-group-text bg-transparent border-end-0">
                                 <i class="bi bi-search"></i>

@@ -91,7 +91,7 @@ require_once '../../config/db.php';
                                         FROM Lessons l
                                         LEFT JOIN Classroom c ON l.classroom_id = c.classroom_id
                                         LEFT JOIN Subject s ON l.subject_id = s.subject_id
-                                        LEFT JOIN Media m ON l.lessons_id = m.lecon_id
+                                        LEFT JOIN Media m ON l.lessons_id = m.lessons_id
                                         ORDER BY l.lessons_id DESC";
                                 $resultat = $conn->query($sql);
 
