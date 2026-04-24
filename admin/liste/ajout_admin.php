@@ -29,6 +29,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $confirm_password = $_POST['confirm_password'] ?? '';
     $telephone = trim($_POST['telephone'] ?? '');
     $birthday = $_POST['birthday'] ?? '';
+    $role = $_POST['role'] ?? 'etudiant';
     
     // Validation
     if(empty($first_name) || empty($last_name) || empty($email) || empty($password)){
@@ -54,18 +55,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 // Hash du mot de passe
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                 
-                // Insérer le nouvel administrateur
-                $sql = "INSERT INTO Users (first_name, last_name, email, password, telephone, birthday, is_admin, is_active, date_creation) 
-                        VALUES (?, ?, ?, ?, ?, ?, 1, 1, NOW())";
+                // Déterminer is_admin en fonction du rôle
+                $is_admin = ($role == 'admin') ? 1 : 0;
+                
+                // Insérer le nouvel utilisateur
+                $sql = "INSERT INTO Users (first_name, last_name, email, password, telephone, birthday, is_admin, is_active, role, date_creation) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, 1, ?, NOW())";
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param("ssssss", $first_name, $last_name, $email, $hashed_password, $telephone, $birthday);
+                $stmt->bind_param("ssssssis", $first_name, $last_name, $email, $hashed_password, $telephone, $birthday, $is_admin, $role);
                 
                 if($stmt->execute()){
-                    $success = "Administrateur ajouté avec succès !";
+                    $success = "Utilisateur ajouté avec succès !";
                     // Réinitialiser le formulaire
                     $first_name = $last_name = $email = $telephone = $birthday = '';
                 } else {
-                    $error = "Erreur lors de l'ajout de l'administrateur.";
+                    $error = "Erreur lors de l'ajout de l'utilisateur.";
                 }
             }
         } catch (Exception $e) {
@@ -79,13 +83,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un administrateur - Admin</title>
+    <title>Ajouter un utilisateur - Admin</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../asset/css/dashboard.css">
-    
-    
 </head>
 <body style="background: #f3f4f6;">
     <div class="wrapper">
@@ -98,22 +100,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <div class="row">
                     <div class="col-12">
                         
-                       
                         <nav style="margin-bottom: 1rem;">
                             <ol style="display: flex; flex-wrap: wrap; list-style: none; padding: 0; margin: 0; gap: 8px;">
-                                <li><a href="../layout/dashboard.php" style="color: #6c757d; text-decoration: none; font-size: 1rem; font-weight: 500;"> Accueil</a> <span style="color: #adb5bd;">/</span></li>
-                                <li><a href="liste_admin.php" style="color: #6c757d; text-decoration: none; font-size: 1rem; font-weight: 500;">Administrateurs</a> <span style="color: #adb5bd;">/</span></li>
-                                <li><span style="color: #6366f1; font-size: 1rem; font-weight: 500;">Ajouter un administrateur</span></li>
+                                <li><a href="../layout/dashboard.php" style="color: #6c757d; text-decoration: none; font-size: 1rem; font-weight: 500;">Accueil</a> <span style="color: #adb5bd;">/</span></li>
+                                <li><a href="liste_admin.php" style="color: #6c757d; text-decoration: none; font-size: 1rem; font-weight: 500;">Utilisateurs</a> <span style="color: #adb5bd;">/</span></li>
+                                <li><span style="color: #6366f1; font-size: 1rem; font-weight: 500;">Ajouter un utilisateur</span></li>
                             </ol>
                         </nav>
                         
-                        <!-- Titre -->
                         <div style="margin-bottom: 1.5rem;">
-                            <h2 style="font-size: 1.5rem; font-weight: 600; color: #0f172a;">Ajouter un administrateur</h2>
-                            <p class="text-muted mt-1">Créez un nouveau compte administrateur pour la gestion de la plateforme</p>
+                            <h2 style="font-size: 1.5rem; font-weight: 600; color: #0f172a;">Ajouter un utilisateur</h2>
+                            <p class="text-muted mt-1">Créez un nouveau compte sur la plateforme</p>
                         </div>
                         
-                        <!-- Messages d'alerte -->
                         <?php if($error): ?>
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <i class="bi bi-exclamation-triangle-fill me-2"></i> <?php echo htmlspecialchars($error); ?>
@@ -128,11 +127,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             </div>
                         <?php endif; ?>
                         
-                        <!-- Formulaire d'ajout -->
                         <div style="background: white; border-radius: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); padding: 1.5rem;">
                             <div style="background: #fef3c7; color: #92400e; padding: 0.5rem 1rem; border-radius: 10px; font-size: 0.85rem; margin-bottom: 1.5rem;">
                                 <i class="bi bi-info-circle-fill me-2"></i>
-                                Les administrateurs ont un accès complet à l'interface d'administration.
+                                Choisissez le rôle de l'utilisateur. Les responsables peuvent gérer les cours, les administrateurs ont un accès total.
                             </div>
     
                             <form method="POST" action="" id="adminForm">
@@ -175,6 +173,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                         value="<?php echo htmlspecialchars($birthday ?? ''); ?>" 
                                         style="border-radius: 10px; border: 1px solid #e2e8f0; padding: 0.6rem 1rem; width: 100%;">
                                     </div>
+                                    
+                                    <div class="col-md-6 mb-3">
+                                        <label for="role" style="font-weight: 500; color: #0f172a; margin-bottom: 0.5rem; display: block;">Rôle <span style="color: #ef4444;">*</span></label>
+                                        <select name="role" id="role" class="form-control" style="border-radius: 10px; border: 1px solid #e2e8f0; padding: 0.6rem 1rem; width: 100%;" required>
+                                            <option value="etudiant" <?php echo (isset($role) && $role == 'etudiant') ? 'selected' : ''; ?>>Étudiant</option>
+                                            <option value="responsable" <?php echo (isset($role) && $role == 'responsable') ? 'selected' : ''; ?>>Responsable</option>
+                                            <option value="admin" <?php echo (isset($role) && $role == 'admin') ? 'selected' : ''; ?>>Administrateur</option>
+                                        </select>
+                                        <small style="color: #6c757d;">Le rôle détermine les droits de l'utilisateur.</small>
+                                    </div>
                                 </div>
         
                                 <div class="row">
@@ -182,6 +190,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                         <label for="password" style="font-weight: 500; color: #0f172a; margin-bottom: 0.5rem; display: block;">Mot de passe <span style="color: #ef4444;">*</span></label>
                                         <input type="password" class="form-control" id="password" name="password" 
                                         style="border-radius: 10px; border: 1px solid #e2e8f0; padding: 0.6rem 1rem; width: 100%;" required>
+                                        <small class="text-muted">Minimum 6 caractères</small>
                                     </div>
             
                                     <div class="col-md-6 mb-3">
@@ -193,10 +202,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         
                                 <div style="display: flex; justify-content: flex-end; gap: 12px;">
                                     <a href="liste_admin.php" style="background: transparent; border: 1px solid #cbd5e1; padding: 0.6rem 1.5rem; border-radius: 10px; color: #475569; font-weight: 500; text-decoration: none;">
-                                         Retour à la liste
+                                        Retour à la liste
                                     </a>
                                     <button type="submit" style="background: #3b82f6; border: none; padding: 0.6rem 1.5rem; border-radius: 10px; font-weight: 500; color: white; cursor: pointer;">
-                                         Ajouter l'administrateur
+                                        Ajouter l'utilisateur
                                     </button>
                                 </div>
                             </form>
@@ -207,9 +216,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-     <script src="../../asset/js/ajout_admin.js"></script>
+    <script src="../../asset/js/ajout_admin.js"></script>
 </body>
 </html>

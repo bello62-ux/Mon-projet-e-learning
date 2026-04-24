@@ -58,7 +58,7 @@
                 <a href="#" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
             </div>
             <div class="footer-credits">
-                <p>&copy; <?php echo date('Y'); ?> Nournours. Tous droits réservés. | Fait avec <i class="fas fa-heart" style="color: #e74c3c;"></i> pour la réussite des élèves</p>
+                <p>&copy; <?php echo date('Y'); ?> Nournours. Tous droits réservés. | Fait par Bello et Saizonou <i class="fas fa-heart" style="color: #e74c3c;"></i></p>
             </div>
         </div>
     </div>

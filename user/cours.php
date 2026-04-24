@@ -11,7 +11,7 @@ $is_logged_in = isset($_SESSION['user_id']);
 // Connexion à la BDD
 require_once '../config/db.php';
 
-// ========== RÉCUPÉRER LES COURS AVEC LEUR IMAGE ==========
+
 $sql_lessons = "SELECT l.*, c.name as niveau_name, s.name as matiere_name
                 FROM Lessons l
                 JOIN Classroom c ON l.classroom_id = c.classroom_id
