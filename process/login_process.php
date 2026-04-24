@@ -25,8 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // NE PAS filtrer sur is_active = 1 ici pour pouvoir détecter les comptes bloqués
-    $sql = "SELECT user_id, first_name, last_name, email, password, is_active, is_admin FROM Users WHERE email = ?";
+    // Récupérer l'utilisateur avec son rôle
+    $sql = "SELECT user_id, first_name, last_name, email, password, is_active, is_admin, role FROM Users WHERE email = ?";
     $stmt = $conn->prepare($sql);
     
     if ($stmt === false) {
@@ -61,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['last_name'] = $user['last_name'];
         $_SESSION['email'] = $user['email'];
         $_SESSION['is_admin'] = $user['is_admin'];
+        $_SESSION['role'] = $user['role'];  // ← AJOUT : stocker le rôle
         $_SESSION['connexion_success'] = true;
         
         // Pour la sidebar admin

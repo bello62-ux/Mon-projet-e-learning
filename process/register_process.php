@@ -26,6 +26,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         exit;
     }
     
+    // ✅ Vérification : mot de passe >= 8 caractères
+    elseif (strlen($password) < 8) {
+        $inscription_error = "❌ Le mot de passe doit contenir au moins 8 caractères.";
+        $_SESSION['post_data'] = $_POST;
+        $_SESSION['inscription_error'] = $inscription_error;
+        header('Location: ../authentification/register.php');
+        exit;
+    }
+    
     // ✅ Vérification : email valide
     elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $inscription_error = "❌ Format d'email invalide.";
@@ -54,12 +63,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
     $is_admin = 0;
     $is_active = 1;
+    $role = 'etudiant';  // ← AJOUT : rôle par défaut pour les inscriptions publiques
     
     $stmt = $conn->prepare("INSERT INTO Users 
-        (first_name, last_name, email, password, birthday, telephone, classroom_id, is_admin, is_active, date_creation) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+        (first_name, last_name, email, password, birthday, telephone, classroom_id, is_admin, role, is_active, date_creation) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
     
-    $stmt->bind_param("ssssssiii", 
+    $stmt->bind_param("sssssssisis", 
         $first_name, 
         $last_name, 
         $email, 
@@ -68,6 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         $telephone, 
         $classroom_id,
         $is_admin,
+        $role,
         $is_active
     );
 

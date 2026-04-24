@@ -16,7 +16,7 @@ if(isset($_GET['chapter_id'])){
     $chapter_id = $conn->real_escape_string($chapter_id);
     
     // Récupérer les médias avant suppression
-    $sql_media = "SELECT media_path FROM Media WHERE chapitre_id='$chapter_id'";
+    $sql_media = "SELECT media_path FROM Media WHERE chapter_id='$chapter_id'";
     $result_media = $conn->query($sql_media);
     while($media = $result_media->fetch_assoc()) {
         $file_path = "../../" . $media['media_path'];

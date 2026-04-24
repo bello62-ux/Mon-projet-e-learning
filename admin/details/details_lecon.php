@@ -18,7 +18,7 @@ $sql = "SELECT l.*, c.name as class_name, s.name as subject_name, m.media_path
         FROM Lessons l
         LEFT JOIN Classroom c ON l.classroom_id = c.classroom_id
         LEFT JOIN Subject s ON l.subject_id = s.subject_id
-        LEFT JOIN Media m ON l.lessons_id = m.lecon_id
+        LEFT JOIN Media m ON l.lessons_id = m.lessons_id
         WHERE l.lessons_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $lessons_id);

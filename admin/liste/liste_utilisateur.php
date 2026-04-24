@@ -22,7 +22,7 @@ require_once '../../config/db.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion des utilisateurs - Admin</title>
+    <title>Gestion des étudiants - Admin</title>
  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
@@ -41,33 +41,33 @@ require_once '../../config/db.php';
                         
                         <nav style="margin-bottom: 1rem;">
                             <ol style="display: flex; flex-wrap: wrap; list-style: none; padding: 0; margin: 0; gap: 8px;">
-                                <li><a href="../layout/dashboard.php" style="color: #6c757d; text-decoration: none; font-size: 1rem; font-weight: 500;"> Accueil</a> <span style="color: #adb5bd;">/</span></li>
-                                <li><span style="color: #6366f1; font-size: 1rem; font-weight: 500;"> Utilisateurs</span></li>
+                                <li><a href="../layout/dashboard.php" style="color: #6c757d; text-decoration: none; font-size: 1rem; font-weight: 500;">Accueil</a> <span style="color: #adb5bd;">/</span></li>
+                                <li><span style="color: #6366f1; font-size: 1rem; font-weight: 500;">Étudiants</span></li>
                             </ol>
                         </nav>
                         
                         <div style="margin-bottom: 1.2rem;">
-                            <h2 style="font-size: 1.5rem; font-weight: 600; color: #0f172a;">Gestion des utilisateurs</h2>
+                            <h2 style="font-size: 1.5rem; font-weight: 600; color: #0f172a;">Gestion des étudiants</h2>
                         </div>
                         
                         <!-- Messages -->
                         <?php if(isset($_GET['success']) && $_GET['success'] == 'blocked'): ?>
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <i class="bi bi-check-circle-fill me-2"></i> Utilisateur bloqué avec succès !
+                                <i class="bi bi-check-circle-fill me-2"></i> Étudiant bloqué avec succès !
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         <?php endif; ?>
 
                         <?php if(isset($_GET['success']) && $_GET['success'] == 'unblocked'): ?>
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <i class="bi bi-check-circle-fill me-2"></i> Utilisateur débloqué avec succès !
+                                <i class="bi bi-check-circle-fill me-2"></i> Étudiant débloqué avec succès !
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         <?php endif; ?>
 
                         <?php if(isset($_GET['success']) && $_GET['success'] == 'deleted'): ?>
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <i class="bi bi-check-circle-fill me-2"></i> Utilisateur supprimé avec succès !
+                                <i class="bi bi-check-circle-fill me-2"></i> Étudiant supprimé avec succès !
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         <?php endif; ?>
@@ -79,18 +79,18 @@ require_once '../../config/db.php';
                             </div>
                         <?php endif; ?>
 
-                        <!-- Liste des utilisateurs -->
+                        <!-- Liste des étudiants -->
                         <div style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
                             <div style="padding: 1rem 1.2rem; border-bottom: 1px solid #eef2ff;">
-                                <h4 style="margin: 0; font-size: 1rem; font-weight: 600; color: #0f172a;">Liste des utilisateurs</h4>
+                                <h4 style="margin: 0; font-size: 1rem; font-weight: 600; color: #0f172a;">Liste des étudiants</h4>
                             </div>
                             <div style="overflow-x: auto;">
                                 <?php
                                 try {
-                                    // CORRECTION : Utilisation de 'telephone' au lieu de 'phone'
-                                    $sql = "SELECT user_id, first_name, last_name, email, telephone, is_active, date_creation 
+                                    // Afficher UNIQUEMENT les étudiants (role = 'etudiant')
+                                    $sql = "SELECT user_id, first_name, last_name, email, telephone, is_active, role, date_creation 
                                             FROM Users 
-                                            WHERE is_admin = 0 
+                                            WHERE role = 'etudiant' 
                                             ORDER BY user_id DESC";
                                     
                                     $resultat = $conn->query($sql);
@@ -119,13 +119,13 @@ require_once '../../config/db.php';
                                             $telephone = !empty($row["telephone"]) ? htmlspecialchars($row["telephone"]) : '<span style="color: #94a3b8;">—</span>';
                                             $date_created = date('d/m/Y', strtotime($row["date_creation"]));
                                             
-                                           
-                                            echo '      <td style="padding: 14px 8px; border-bottom: 1px solid #f0f2f5; text-align: center; vertical-align: middle;">' . $user_id . '';
-                                            echo '      <td style="padding: 14px 8px; border-bottom: 1px solid #f0f2f5; vertical-align: middle;">' . $first_name . '';
-                                            echo '      <td style="padding: 14px 8px; border-bottom: 1px solid #f0f2f5; vertical-align: middle;">' . $last_name . '';
-                                            echo '      <td style="padding: 14px 8px; border-bottom: 1px solid #f0f2f5; vertical-align: middle;">' . $email . '';
-                                            echo '      <td style="padding: 14px 8px; border-bottom: 1px solid #f0f2f5; text-align: center; vertical-align: middle;">' . $telephone . '';
-                                            echo '      <td style="padding: 14px 8px; border-bottom: 1px solid #f0f2f5; text-align: center; vertical-align: middle;">';
+                                        
+                                            echo '<td style="padding: 14px 8px; border-bottom: 1px solid #f0f2f5; text-align: center; vertical-align: middle;">' . $user_id . '';
+                                            echo '<td style="padding: 14px 8px; border-bottom: 1px solid #f0f2f5; vertical-align: middle;">' . $first_name . '';
+                                            echo '<td style="padding: 14px 8px; border-bottom: 1px solid #f0f2f5; vertical-align: middle;">' . $last_name . '';
+                                            echo '<td style="padding: 14px 8px; border-bottom: 1px solid #f0f2f5; vertical-align: middle;">' . $email . '';
+                                            echo '<td style="padding: 14px 8px; border-bottom: 1px solid #f0f2f5; text-align: center; vertical-align: middle;">' . $telephone . '';
+                                            echo '<td style="padding: 14px 8px; border-bottom: 1px solid #f0f2f5; text-align: center; vertical-align: middle;">';
                                             
                                             if($row["is_active"] == 1) {
                                                 echo '<span class="badge" style="background: #e6f7e6; color: #2e7d32; padding: 4px 12px; border-radius: 30px; font-size: 0.7rem; font-weight: 500;">Actif</span>';
@@ -133,9 +133,9 @@ require_once '../../config/db.php';
                                                 echo '<span class="badge" style="background: #ffe6e6; color: #c62828; padding: 4px 12px; border-radius: 30px; font-size: 0.7rem; font-weight: 500;">Bloqué</span>';
                                             }
                                           
-                                            echo '      <td style="padding: 14px 8px; border-bottom: 1px solid #f0f2f5; text-align: center; vertical-align: middle; font-size: 0.8rem; color: #64748b;">' . $date_created . '';
-                                            echo '      <td style="padding: 14px 8px; border-bottom: 1px solid #f0f2f5; text-align: center; vertical-align: middle;">';
-                                            echo '        <div class="btn-group" role="group">';
+                                            echo '<td style="padding: 14px 8px; border-bottom: 1px solid #f0f2f5; text-align: center; vertical-align: middle; font-size: 0.8rem; color: #64748b;">' . $date_created . '';
+                                            echo '<td style="padding: 14px 8px; border-bottom: 1px solid #f0f2f5; text-align: center; vertical-align: middle;">';
+                                            echo '<div class="btn-group" role="group">';
                                             
                                             // Vérifier si c'est l'utilisateur connecté
                                             if($user_id != $_SESSION['user_id']) {
@@ -151,23 +151,22 @@ require_once '../../config/db.php';
                                                 echo '<span class="badge bg-secondary">Vous-même</span>';
                                             }
                                             
-                                            echo '        </div>';
-                                            
-                                            echo '    </tr>';
+                                            echo '</div>';
+                                            echo '</tr>';
                                         }
 
                                         echo '</tbody>';
-                                        echo '</table>';
+                                        echo '<tr>';
                                     } else {
                                         echo '<div style="text-align: center; padding: 3rem;">';
                                         echo '<i class="bi bi-inbox" style="font-size: 2.5rem; color: #cbd5e1;"></i>';
-                                        echo '<p style="color: #94a3b8; margin-top: 0.5rem;">Aucun utilisateur inscrit</p>';
+                                        echo '<p style="color: #94a3b8; margin-top: 0.5rem;">Aucun étudiant inscrit</p>';
                                         echo '</div>';
                                     }
                                 } catch (Exception $e) {
                                     echo '<div class="alert alert-danger m-3">';
                                     echo '<i class="bi bi-exclamation-triangle-fill me-2"></i>';
-                                    echo 'Erreur lors de la récupération des utilisateurs : ' . htmlspecialchars($e->getMessage());
+                                    echo 'Erreur lors de la récupération des étudiants : ' . htmlspecialchars($e->getMessage());
                                     echo '</div>';
                                 }
                                 ?>
@@ -183,7 +182,7 @@ require_once '../../config/db.php';
         <div class="modal-dialog modal-sm">
             <div class="modal-content" style="border-radius: 8px;">
                 <div class="modal-body text-center py-4">
-                    <p class="mt-3 mb-0" id="modalBloquerMessage">Voulez-vous vraiment bloquer cet utilisateur ?</p>
+                    <p class="mt-3 mb-0" id="modalBloquerMessage">Voulez-vous vraiment bloquer cet étudiant ?</p>
                 </div>
                 <div class="modal-footer justify-content-center border-0 pt-0 pb-4">
                     <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal" style="border-radius: 8px;">Annuler</button>
@@ -198,7 +197,7 @@ require_once '../../config/db.php';
         <div class="modal-dialog modal-sm">
             <div class="modal-content" style="border-radius: 8px;">
                 <div class="modal-body text-center py-4">
-                    <p class="mt-3 mb-0" id="modalDebloquerMessage">Voulez-vous vraiment débloquer cet utilisateur ?</p>
+                    <p class="mt-3 mb-0" id="modalDebloquerMessage">Voulez-vous vraiment débloquer cet étudiant ?</p>
                 </div>
                 <div class="modal-footer justify-content-center border-0 pt-0 pb-4">
                     <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal" style="border-radius: 8px;">Annuler</button>
@@ -213,7 +212,7 @@ require_once '../../config/db.php';
         <div class="modal-dialog modal-sm">
             <div class="modal-content" style="border-radius: 8px;">
                 <div class="modal-body text-center py-4">
-                    <p class="mt-3 mb-0" id="modalSuppressionMessage">Voulez-vous vraiment supprimer cet utilisateur ?</p>
+                    <p class="mt-3 mb-0" id="modalSuppressionMessage">Voulez-vous vraiment supprimer cet étudiant ?</p>
                     <small class="text-muted">Cette action est irréversible.</small>
                 </div>
                 <div class="modal-footer justify-content-center border-0 pt-0 pb-4">
@@ -227,6 +226,6 @@ require_once '../../config/db.php';
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-     <script src="../../asset/js/utilisateur.js"></script>
+    <script src="../../asset/js/utilisateur.js"></script>
 </body>
 </html>
