@@ -50,14 +50,16 @@ unset($_SESSION['connexion_error']);
         <p>Bienvenue <?php echo htmlspecialchars($user_first_name); ?> !</p>
     </div>
     <script>
-        setTimeout(function() {
-            <?php if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1): ?>
-                window.location.href = "../admin/layout/dashboard.php";
-            <?php else: ?>
-                window.location.href = "../index.php";
-            <?php endif; ?>
-        }, 2000);
-    </script>
+    setTimeout(function() {
+        <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
+            window.location.href = "../admin/layout/dashboard.php";
+        <?php elseif(isset($_SESSION['role']) && $_SESSION['role'] == 'responsable'): ?>
+            window.location.href = "../admin/layout/dashboard.php";
+        <?php else: ?>
+            window.location.href = "../index.php";
+        <?php endif; ?>
+    }, 2000);
+</script>
     <?php endif; ?>
 
     <div class="container">
@@ -74,19 +76,19 @@ unset($_SESSION['connexion_error']);
             <?php if(isset($_GET['error'])): ?>
                 <?php if($_GET['error'] == 'blocked'): ?>
                     <div class="alert alert-error">
-                        <strong>Compte bloqué !</strong> Votre compte a été bloqué par un administrateur.Contactez nous au <a href="https://wa.me/2290162130248" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i>ici </a>pour connaitre les raisons
+                        <strong>⛔ Compte bloqué !</strong> Votre compte a été bloqué par un administrateur. Contactez-nous <a href="https://wa.me/2290162130248" target="_blank">ici</a> pour connaître les raisons.
                     </div>
                 <?php elseif($_GET['error'] == 'deleted'): ?>
                     <div class="alert alert-error">
-                        <strong>Compte supprimé !</strong> Votre compte a été supprimé.Contactez nous au <a href="https://wa.me/2290162130248" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i>ici </a>pour connaitre les raisons
+                        <strong>❌ Compte supprimé !</strong> Votre compte a été supprimé. Contactez-nous <a href="https://wa.me/2290162130248" target="_blank">ici</a> pour plus d'informations.
                     </div>
                 <?php elseif($_GET['error'] == 'invalid'): ?>
                     <div class="alert alert-error">
-                        <strong>Erreur de connexion</strong> Mot de passe incorrect.
+                        <strong>⚠️ Erreur de connexion</strong> Mot de passe incorrect.
                     </div>
                 <?php elseif($_GET['error'] == 'notfound'): ?>
                     <div class="alert alert-error">
-                        <strong>Compte introuvable</strong> Aucun compte associé à cet email.
+                        <strong>🔍 Compte introuvable</strong> Aucun compte associé à cet email.
                     </div>
                 <?php endif; ?>
             <?php endif; ?>

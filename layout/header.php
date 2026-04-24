@@ -47,11 +47,11 @@ if ($is_logged_in) {
                 <ul>
                     <a href="../index.php"><li>Accueil</li></a>
                     <a href="../user/cours.php"><li>Cours</li></a>
-                    <a href="../user/abonnement.php"><li>Abonnement</li></a>
+                    <a href="../user/document.php"><li>Documents</li></a>
 
                     <!-- Menu Profil : visible uniquement si connecté -->
                     <?php if ($is_logged_in && !empty($user_name)): ?>
-                        <a href="../user/profil.php"><li>Profil (<?php echo htmlspecialchars($user_name); ?>)</li></a>
+                        <a href="../user/profil.php"><li>Profil</li></a>
                     <?php elseif ($is_logged_in): ?>
                         <a href="../user/profil.php"><li>Mon Profil</li></a>
                     <?php endif; ?>

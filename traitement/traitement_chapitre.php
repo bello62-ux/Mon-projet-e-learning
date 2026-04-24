@@ -32,31 +32,32 @@ if(isset($_POST["ajouter"])) {
             $file_name = time() . "_" . $_FILES['media']['name'];
             $target_file = $upload_dir . $file_name;
             
-            echo "Chemin d'upload: " . $target_file . "<br>";
-            
             if(move_uploaded_file($_FILES['media']['tmp_name'], $target_file)) {
                 
                 $media_path = "uploads/chapitres/" . $file_name;
                 
-                // Insérer dans la table Media
-                $sql_media = "INSERT INTO Media (chapter_id, file_name, media_type, media_path) 
-                              VALUES (?, ?, ?, ?)";
+                // ✅ CORRECTION : Ajouter lessons_id dans l'insertion Media
+                $sql_media = "INSERT INTO Media (chapter_id, lessons_id, file_name, media_type, media_path) 
+                              VALUES (?, ?, ?, ?, ?)";
                 $stmt_media = $conn->prepare($sql_media);
                 $media_type = 'image';
-                $stmt_media->bind_param("isss", $chapitre_id, $file_name, $media_type, $media_path);
-                $stmt_media->execute();
-                $stmt_media->close();
+                $stmt_media->bind_param("iisss", $chapitre_id, $lessons_id, $file_name, $media_type, $media_path);
                 
-                echo "Image uploadée avec succès!<br>";
+                if($stmt_media->execute()) {
+                    echo "Image uploadée avec succès!<br>";
+                } else {
+                    echo "Erreur lors de l'insertion dans Media: " . $stmt_media->error . "<br>";
+                }
+                $stmt_media->close();
             } else {
-                echo "Erreur lors de l'upload<br>";
+                echo "Erreur lors de l'upload du fichier<br>";
             }
         }
         
         header("Location: ../admin/cours/ajouter_chapitre.php?success=1");
         exit();
     } else {
-        echo "Erreur: " . $conn->error;
+        echo "Erreur lors de l'insertion du chapitre: " . $conn->error;
     }
     
     $stmt->close();

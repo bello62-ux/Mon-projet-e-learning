@@ -1,4 +1,3 @@
-
 <?php
 // Définir le titre de la page
 $page_title = "Nos Cours - Plateforme Éducative";
@@ -12,7 +11,7 @@ $is_logged_in = isset($_SESSION['user_id']);
 // Connexion à la BDD
 require_once '../config/db.php';
 
-// ========== RÉCUPÉRER LES COURS AVEC LEUR IMAGE ==========
+
 $sql_lessons = "SELECT l.*, c.name as niveau_name, s.name as matiere_name
                 FROM Lessons l
                 JOIN Classroom c ON l.classroom_id = c.classroom_id
@@ -26,7 +25,6 @@ if ($result_lessons && $result_lessons->num_rows > 0) {
     while ($row = $result_lessons->fetch_assoc()) {
         
         // Récupérer l'image depuis Media
-        // L'image peut être liée à : lessons_id OU chapter_id
         $sql_image = "SELECT media_path FROM Media 
                       WHERE media_type = 'image' 
                       AND (lessons_id = " . $row['lessons_id'] . " 
@@ -39,7 +37,6 @@ if ($result_lessons && $result_lessons->num_rows > 0) {
         $image_path = '../media/images/default-course.jpg';
         if ($image_row && !empty($image_row['media_path'])) {
             $media_path = $image_row['media_path'];
-            // Corriger le chemin
             if (strpos($media_path, 'uploads/') === 0) {
                 $image_path = '../' . $media_path;
             } elseif (strpos($media_path, '../') !== 0 && strpos($media_path, 'media/') !== 0) {
@@ -152,6 +149,7 @@ foreach ($tous_les_cours as $c) {
         border: 1px solid rgba(0,0,0,0.03);
         position: relative;
         z-index: 1;
+        height: 100%;
     }
     
     .cours-card::before {
@@ -225,6 +223,7 @@ foreach ($tous_les_cours as $c) {
         color: #5a6e7c;
         line-height: 1.5;
         margin: 0 1.5rem 1.2rem;
+        flex: 1;
     }
     
     .cours-card button {
@@ -239,6 +238,7 @@ foreach ($tous_les_cours as $c) {
         font-size: 0.9rem;
         transition: all 0.3s;
         cursor: pointer;
+        margin-top: auto;
     }
     
     .cours-card button:hover {
