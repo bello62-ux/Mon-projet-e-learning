@@ -29,7 +29,7 @@ if(isset($_POST["ajouter"])){
         // Gestion de l'upload d'image APRÈS avoir l'ID de la leçon
         if(isset($_FILES['media']) && $_FILES['media']['error'] == 0) {
             // ✅ CHEMIN ABSOLU
-            $upload_dir = "D:/Sites/Lab/Mon-projet-e-learning/PROJET SOUTENANCE/uploads/lecons/";
+            $upload_dir = "C:/xampp/htdocs/Mon-projet-e-learning/uploads/lecons/";
             
             // Créer le dossier s'il n'existe pas
             if(!is_dir($upload_dir)) {

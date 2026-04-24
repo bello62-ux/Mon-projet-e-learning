@@ -23,7 +23,7 @@ if(isset($_POST["ajouter"])) {
         
         if(isset($_FILES['media']) && $_FILES['media']['error'] == 0) {
 
-            $upload_dir = "D:/Sites/Lab/Mon-projet-e-learning/PROJET SOUTENANCE/uploads/chapitres/";
+            $upload_dir = "C:/xampp/htdocs/Mon-projet-e-learning/uploads/chapitres/";
           
             if(!is_dir($upload_dir)) {
                 mkdir($upload_dir, 0777, true);
